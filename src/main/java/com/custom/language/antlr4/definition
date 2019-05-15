@@ -1,0 +1,50 @@
+Plik -> { Content }
+
+Content -> Import Main Reszta
+
+Import -> import [*] Import | NULL
+Main -> main() Blok
+Reszta -> Funkcja Reszta | Zainicjalizowanie Reszta | NULL
+
+Blok -> { Instrukcje }
+
+Instrukcje -> Komentarz Instrukcje
+Instrukcje -> Wywolanie Instrukcje
+Instrukcje -> Zmienna Instrukcje
+Instrukcje -> Petla Instrukcje
+Instrukcje -> Warunek Instrukcje
+
+!Instrukcje -> InnerBlok
+!InnerBlok -> Petla
+!InnerBlok -> Warunek
+
+Komentarz -> //Tresc
+
+Wywolanie -> Nazwa(Odwolanie)
+Odwolanie -> Odwolanie2 | NULL
+Odwolanie2 -> Nazwa, Odwolanie2 | Nazwa
+
+Zmienna -> Zainicjalizowanie | Przypisanie
+
+Zainicjalizowanie -> Nazwa : Typ | Nazwa : Typ <- Wartosc
+Przypisanie -> Nazwa <- Wartosc | Wartosc -> Nazwa
+
+Warunek -> if [WARUNKI] { Instrukcje } Kontynuacja
+Kontynuacja -> elif {} Kontynuacja | else {} | NULL
+
+Petla -> PetlaTyp { Instrukcje }
+PetlaTyp -> While | Foreach
+While -> while [WARUNKI]
+Foreach -> foreach (Deklaracja in Nazwa)
+Foreach -> foreach (Deklaracja to Wartosc : [Wartosc!opcjonalne])
+
+Funkcja -> Typ nazwa(Parametry) Blok
+Typ -> int | string | void | float | bool | list
+Parametry -> Parametry2 | NULL
+Parametry2 -> Typ nazwa; Parametry2 | Typ nazwa
+
+Słowa kluczowe:
+main, {, }, (, ), int, string, void, float, bool, list,
+while, if, elif, else, foreach, in, to, <-, ->, :, import,
+<=, <, >, >=, ==, ~=, ~, //, ;
+true, false

@@ -1,0 +1,54 @@
+{
+    import ?
+
+    main()
+    {
+        instrukcje...
+
+        [nazwa funkcji](a, b, c)
+
+        // komentarz
+
+        nazwa zmiennej : [typ zwracany] <- wartosc poczatkowa
+        foo : int <- 6
+
+        567 : int <- 123
+        123 : int <- 567
+
+        ! : bool <- false
+        
+        567 <- int(~!)
+
+        567 -> 123
+        123 <- 567
+        567 -> 567
+        123 <- 123
+
+        // operacje arytmetyczne
+        bar <- foo + 7
+
+        foo + 7 -> bar
+
+        if [warunek] <= != >= > < ~
+        {}
+        elif
+        {}
+        else
+        {}
+
+        while [warunek]
+        {}
+
+    ! do pominiecia
+        do
+        {} while [warunek]
+
+        foreach ([zmienna] in [zbior]) {}
+        foreach ([start] to [koniec] : [interwal]) {}
+    }
+
+    [return type] nazwa([params]; [param2]; [param3])
+    {
+
+    }
+}

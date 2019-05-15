@@ -1,0 +1,19 @@
+{
+    int func() {
+        bar : int <- 12
+        return foo
+    }
+
+    main()
+    {
+        foo : int <- 6
+
+        bar : int <- foo + 7
+
+        foo + 7 -> xyz : int
+
+        bar <- func()
+
+        show(bar)
+    }
+}
