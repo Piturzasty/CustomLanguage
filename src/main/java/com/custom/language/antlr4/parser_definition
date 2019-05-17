@@ -5,7 +5,7 @@ mainDeclaration -> main () methodBody
 
 functionsDeclaration -> methodDeclaration
 
-methodDeclaration -> typeOrVoid IDENTIFIER formalParameters ([])* methodBody
+methodDeclaration -> typeOrVoid IDENTIFIER formalParameters methodBody
 
 methodBody -> block
 
@@ -15,7 +15,7 @@ block -> { blockStatement* }
 blockStatement -> localVariableDeclaration
 blockStatement -> statement
 
-localVariableDeclaration -> variableDeclaratorId : type (<- variableInitializer)?
+localVariableDeclaration -> variableDeclaratorId : type ('<-' variableInitializer)?
 localVariableDeclaration -> variableInitializer -> variableDeclaratorId : type
 localVariableDeclaration -> type variableDeclarators
 
@@ -31,10 +31,12 @@ statement -> CONTINUE IDENTIFIER?
 statement -> writeToStd
 statement -> readFromStd
 statement -> expression
-statement -> IDENTIFIER : statement
+statement -> comment
+
+comment -> '//' literal
 
 forControl -> foreachControl
-forControl -> forInit? , expression? , forUpdate=expressionList?
+forControl -> forInit? , expression? , expressionList?
 
 foreachControl -> type variableDeclaratorId IN expression
 
@@ -53,9 +55,9 @@ readFromStd -> READ IDENTIFIER
 variableDeclarators -> variableDeclarator (, variableDeclarator)*
 
 variableDeclarator -> variableDeclaratorId (<- variableInitializer)?
-variableDeclarator -> (variableInitializer -> ) variableDeclaratorId
+variableDeclarator -> (variableInitializer ->) variableDeclaratorId
 
-variableDeclaratorId -> IDENTIFIER (LBRACK RBRACK)*
+variableDeclaratorId -> IDENTIFIER
 
 variableInitializer -> expression
 
@@ -69,7 +71,6 @@ expression -> expression bop=DOT
       ( IDENTIFIER
       | methodCall
       )
-expression -> expression [ expression ]
 expression -> methodCall
 expression -> ( type ) expression
 expression -> expression postfix=(INC | DEC)
@@ -80,13 +81,10 @@ expression -> expression bop=(ADD|SUB) expression
 expression -> expression (LT LT | GT GT GT | GT GT) expression
 expression -> expression bop=(LE | GE | GT | LT) expression
 expression -> expression bop=(EQUAL | NOTEQUAL ) expression
-expression -> expression bop=BITAND expression
 expression -> expression bop=CARET expression
-expression -> expression bop=BITOR expression
 expression -> expression bop=AND expression
 expression -> expression bop=OR expression
 expression -> expression bop=QUESTION expression COLON expression
-expression -> <assoc=right> expression
 expression -> bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN) expression
 
 primary -> ( expression )
@@ -99,7 +97,7 @@ methodCall -> IDENTIFIER ( expressionList? )
 typeOrVoid -> type
 typeOrVoid -> VOID
 
-type -> (primitiveType) ([ ])*
+type -> (primitiveType)
 
 primitiveType -> BOOLEAN
 primitiveType -> INT
@@ -113,8 +111,6 @@ formalParameterList -> formalParameter (, formalParameter)* (, lastFormalParamet
 formalParameterList -> lastFormalParameter
 
 formalParameter -> type variableDeclaratorId
-
-lastFormalParameter -> type ... variableDeclaratorId
 
 literal -> integerLiteral
 literal -> floatLiteral
