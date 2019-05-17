@@ -11,7 +11,7 @@ fileContent
     ;
 
 importDeclaration
-    : IMPORT qualifiedName ('.' '*')?
+    : IMPORT qualifiedName (DOT MUL)?
     ;
 
 mainDeclaration
@@ -23,7 +23,7 @@ functionsDeclaration
     ;
 
 methodDeclaration
-    : typeOrVoid IDENTIFIER formalParameters ('[' ']')* methodBody
+    : typeOrVoid IDENTIFIER formalParameters (LBRACK RBRACK)* methodBody
     ;
 
 methodBody
@@ -42,25 +42,24 @@ blockStatement
     ;
 
 localVariableDeclaration
-    : variableDeclaratorId ':' type ('<-' variableInitializer)?
-    | variableInitializer '->' variableDeclaratorId ':' type
+    : variableDeclaratorId COLON type (ASSIGN_LEFT variableInitializer)?
+    | variableInitializer ASSIGN_RIGHT variableDeclaratorId COLON type
     | type variableDeclarators
     ;
 
 statement
     : blockLabel=block
     | IF parExpression statement (ELSE statement)?
-    | FOREACH '(' foreachControl ')' statement
-    | FOREACH '(' forControl ')' statement
+    | FOREACH LPAREN foreachControl RPAREN statement
+    | FOREACH LPAREN forControl RPAREN statement
     | WHILE parExpression statement
     | DO statement WHILE parExpression
-    | TRY block (catchClause+ finallyBlock? | finallyBlock)
-    | SWITCH parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+    | SWITCH parExpression LBRACE switchBlockStatementGroup* switchLabel* RBRACE
     | RETURN expression?
     | BREAK IDENTIFIER?
     | CONTINUE IDENTIFIER?
     | statementExpression=expression
-    | identifierLabel=IDENTIFIER ':' statement
+    | identifierLabel=IDENTIFIER COLON statement
     ;
 
 foreachControl
@@ -69,7 +68,7 @@ foreachControl
 
 forControl
     : enhancedForControl
-    | forInit? ',' expression? ',' forUpdate=expressionList?
+    | forInit? COMMA expression? COMMA forUpdate=expressionList?
     ;
 
 forInit
@@ -78,7 +77,7 @@ forInit
     ;
 
 enhancedForControl
-    : type variableDeclaratorId ':' expression
+    : type variableDeclaratorId COLON expression
     ;
 
 switchBlockStatementGroup
@@ -86,23 +85,23 @@ switchBlockStatementGroup
     ;
 
 switchLabel
-    : CASE (constantExpression=expression | enumConstantName=IDENTIFIER) ':'
-    | DEFAULT ':'
+    : CASE (constantExpression=expression | enumConstantName=IDENTIFIER) COLON
+    | DEFAULT COLON
     ;
 
 // VARIABLES
 
 variableDeclarators
-    : variableDeclarator (',' variableDeclarator)*
+    : variableDeclarator (COMMA variableDeclarator)*
     ;
 
 variableDeclarator
-    : variableDeclaratorId ('<-' variableInitializer)?
-    | (variableInitializer '->' ) variableDeclaratorId
+    : variableDeclaratorId (ASSIGN_LEFT variableInitializer)?
+    | (variableInitializer ASSIGN_RIGHT ) variableDeclaratorId
     ;
 
 variableDeclaratorId
-    : IDENTIFIER ('[' ']')*
+    : IDENTIFIER (LBRACK RBRACK)*
     ;
 
 variableInitializer
@@ -111,55 +110,55 @@ variableInitializer
     ;
 
 arrayInitializer
-    : '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    : LBRACE (variableInitializer (COMMA variableInitializer)* (COMMA)? )? RBRACE
     ;
 
 // EXPRESSIONS
 
 parExpression
-    : '(' expression ')'
+    : LPAREN expression RPAREN
     ;
 
 expressionList
-    : expression (',' expression)*
+    : expression (COMMA expression)*
     ;
 
 expression
     : primary
-    | expression bop='.'
+    | expression bop=DOT
       ( IDENTIFIER
       | methodCall
       )
-    | expression '[' expression ']'
+    | expression LBRACK expression RBRACK
     | methodCall
-    | '(' type')' expression
-    | expression postfix=('++' | '--')
-    | prefix=('+'|'-'|'++'|'--') expression
-    | prefix=('~'|'!') expression
-    | expression bop=('*'|'/'|'%') expression
-    | expression bop=('+'|'-') expression
-    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression
-    | expression bop=('<=' | '>=' | '>' | '<') expression
-    | expression bop=('==' | '!=') expression
-    | expression bop='&' expression
-    | expression bop='^' expression
-    | expression bop='|' expression
-    | expression bop='&&' expression
-    | expression bop='||' expression
-    | expression bop='?' expression ':' expression
+    | LPAREN type RPAREN expression
+    | expression postfix=(INC | DEC)
+    | prefix=(ADD | SUB | INC | DEC) expression
+    | prefix=(TILDE | BANG) expression
+    | expression bop=(MUL |DIV|MOD) expression
+    | expression bop=(ADD|SUB) expression
+    | expression (LT LT | GT GT GT | GT GT) expression
+    | expression bop=(LE | GE | GT | LT) expression
+    | expression bop=(EQUAL | NOTEQUAL ) expression
+    | expression bop=BITAND expression
+    | expression bop=CARET expression
+    | expression bop=BITOR expression
+    | expression bop=AND expression
+    | expression bop=OR expression
+    | expression bop=QUESTION expression COLON expression
     | <assoc=right> expression
-      bop=('<-' | '->' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
+      bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN)
       expression
     ;
 
 primary
-    : '(' expression ')'
+    : LPAREN expression RPAREN
     | literal
     | IDENTIFIER
     ;
 
 methodCall
-    : IDENTIFIER '(' expressionList? ')'
+    : IDENTIFIER LPAREN expressionList? RPAREN
     ;
 
 // TYPES
@@ -170,7 +169,7 @@ typeOrVoid
     ;
 
 type
-    : (primitiveType) ('[' ']')*
+    : (primitiveType) (LBRACK RBRACK)*
     ;
 
 primitiveType
@@ -183,11 +182,11 @@ primitiveType
 // PARAMETERS
 
 formalParameters
-    : '(' formalParameterList? ')'
+    : LPAREN formalParameterList? RPAREN
     ;
 
 formalParameterList
-    : formalParameter (',' formalParameter)* (',' lastFormalParameter)?
+    : formalParameter (COMMA formalParameter)* (COMMA lastFormalParameter)?
     | lastFormalParameter
     ;
 
@@ -196,11 +195,11 @@ formalParameter
     ;
 
 lastFormalParameter
-    : type '...' variableDeclaratorId
+    : type ELLIPSIS variableDeclaratorId
     ;
 
 qualifiedName
-    : IDENTIFIER ('.' IDENTIFIER)*
+    : IDENTIFIER (DOT IDENTIFIER)*
     ;
 
 // LITERALS
