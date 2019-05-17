@@ -1,8 +1,7 @@
 Plik -> { Content }
 
-Content -> Import Main Reszta
+Content -> Main Reszta
 
-Import -> import [*] Import | NULL
 Main -> main() Blok
 Reszta -> Funkcja Reszta | Zainicjalizowanie Reszta | NULL
 

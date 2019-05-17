@@ -7,11 +7,7 @@ compilationUnit
     ;
 
 fileContent
-    : importDeclaration* functionsDeclaration* mainDeclaration
-    ;
-
-importDeclaration
-    : IMPORT qualifiedName (DOT MUL)?
+    : functionsDeclaration* mainDeclaration
     ;
 
 mainDeclaration
@@ -50,7 +46,6 @@ localVariableDeclaration
 statement
     : blockLabel=block
     | IF parExpression statement (ELSE statement)?
-    | FOREACH LPAREN foreachControl RPAREN statement
     | FOREACH LPAREN forControl RPAREN statement
     | WHILE parExpression statement
     | DO statement WHILE parExpression
@@ -58,26 +53,24 @@ statement
     | RETURN expression?
     | BREAK IDENTIFIER?
     | CONTINUE IDENTIFIER?
+    | writeToStd
+    | readFromStd
     | statementExpression=expression
     | identifierLabel=IDENTIFIER COLON statement
     ;
 
-foreachControl
-    : type IDENTIFIER* IN* IDENTIFIER*
+forControl
+    : foreachControl
+    | forInit? COMMA expression? COMMA forUpdate=expressionList?
     ;
 
-forControl
-    : enhancedForControl
-    | forInit? COMMA expression? COMMA forUpdate=expressionList?
+foreachControl
+    : type variableDeclaratorId IN expression
     ;
 
 forInit
     : localVariableDeclaration
     | expressionList
-    ;
-
-enhancedForControl
-    : type variableDeclaratorId COLON expression
     ;
 
 switchBlockStatementGroup
@@ -87,6 +80,14 @@ switchBlockStatementGroup
 switchLabel
     : CASE (constantExpression=expression | enumConstantName=IDENTIFIER) COLON
     | DEFAULT COLON
+    ;
+
+writeToStd
+    : WRITE (expression | IDENTIFIER)* (expression | IDENTIFIER)+
+    ;
+
+readFromStd
+    : READ IDENTIFIER
     ;
 
 // VARIABLES
@@ -105,12 +106,7 @@ variableDeclaratorId
     ;
 
 variableInitializer
-    : arrayInitializer
-    | expression
-    ;
-
-arrayInitializer
-    : LBRACE (variableInitializer (COMMA variableInitializer)* (COMMA)? )? RBRACE
+    : expression
     ;
 
 // EXPRESSIONS
@@ -146,15 +142,9 @@ expression
     | expression bop=AND expression
     | expression bop=OR expression
     | expression bop=QUESTION expression COLON expression
-    | showCall
     | <assoc=right> expression
       bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN)
       expression
-    ;
-
-showCall
-    : SHOW expression
-    | SHOW IDENTIFIER
     ;
 
 primary
@@ -202,10 +192,6 @@ formalParameter
 
 lastFormalParameter
     : type ELLIPSIS variableDeclaratorId
-    ;
-
-qualifiedName
-    : IDENTIFIER (DOT IDENTIFIER)*
     ;
 
 // LITERALS

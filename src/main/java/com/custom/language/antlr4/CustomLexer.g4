@@ -17,7 +17,9 @@ CASE:               'case';
 CONTINUE:           'continue';
 BREAK:              'break';
 DEFAULT:            'default';
-SHOW:               'show';
+
+WRITE:              'write';
+READ:               'read';
 
 MAIN:               'main';
 RETURN:             'return';

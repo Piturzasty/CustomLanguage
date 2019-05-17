@@ -8,9 +8,3 @@
 dependency-reduced-pom.xml
 
 \.idea/
-
-src/main/java/com/custom/language/antlr4/generated/
-
-src/main/java/com/custom/language/antlr4/\.antlr/
-
-gen/com/custom/language/antlr4/generated/

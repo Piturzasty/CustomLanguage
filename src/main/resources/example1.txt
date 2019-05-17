@@ -14,7 +14,7 @@
 
         bar <- func()
 
-        show bar
-        show 123455
+        write bar
+        write "Hello my dear"
     }
 }
