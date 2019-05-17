@@ -57,7 +57,6 @@ statement
     | TRY block (catchClause+ finallyBlock? | finallyBlock)
     | SWITCH parExpression '{' switchBlockStatementGroup* switchLabel* '}'
     | RETURN expression?
-    | THROW expression
     | BREAK IDENTIFIER?
     | CONTINUE IDENTIFIER?
     | statementExpression=expression
@@ -80,19 +79,6 @@ forInit
 
 enhancedForControl
     : type variableDeclaratorId ':' expression
-    ;
-
-
-catchClause
-    : CATCH '(' catchType IDENTIFIER ')' block
-    ;
-
-catchType
-    : qualifiedName ('|' qualifiedName)*
-    ;
-
-finallyBlock
-    : FINALLY block
     ;
 
 switchBlockStatementGroup

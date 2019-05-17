@@ -12,9 +12,6 @@ WHILE:              'while';
 IF:                 'if';
 ELSE:               'else';
 
-TRY:                'try';
-FINALLY:            'finally';
-
 SWITCH:             'switch';
 CASE:               'case';
 CONTINUE:           'continue';
@@ -23,8 +20,6 @@ DEFAULT:            'default';
 
 MAIN:               'main';
 RETURN:             'return';
-THROW:              'throw';
-CATCH:              'catch';
 
 FLOAT:              'float';
 INT:                'int';
