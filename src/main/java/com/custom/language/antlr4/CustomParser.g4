@@ -182,16 +182,11 @@ formalParameters
     ;
 
 formalParameterList
-    : formalParameter (COMMA formalParameter)* (COMMA lastFormalParameter)?
-    | lastFormalParameter
+    : formalParameter (COMMA formalParameter)*
     ;
 
 formalParameter
     : type variableDeclaratorId
-    ;
-
-lastFormalParameter
-    : type ELLIPSIS variableDeclaratorId
     ;
 
 // LITERALS

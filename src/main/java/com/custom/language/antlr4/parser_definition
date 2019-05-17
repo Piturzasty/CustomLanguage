@@ -1,7 +1,7 @@
-compilationUnit -> { fileContent }
+compilationUnit -> LBRACE fileContent RBRACE
 
 fileContent -> functionsDeclaration* mainDeclaration
-mainDeclaration -> main () methodBody
+mainDeclaration -> main LPAREN RPAREN methodBody
 
 functionsDeclaration -> methodDeclaration
 
@@ -10,21 +10,21 @@ methodDeclaration -> typeOrVoid IDENTIFIER formalParameters methodBody
 methodBody -> block
 
 
-block -> { blockStatement* }
+block -> LBRACE blockStatement* RBRACE
 
 blockStatement -> localVariableDeclaration
 blockStatement -> statement
 
-localVariableDeclaration -> variableDeclaratorId : type ('<-' variableInitializer)?
-localVariableDeclaration -> variableInitializer -> variableDeclaratorId : type
+localVariableDeclaration -> variableDeclaratorId COLON type ( ASSIGN_LEFT variableInitializer )?
+localVariableDeclaration -> variableInitializer ASSIGN_RIGHT variableDeclaratorId COLON type
 localVariableDeclaration -> type variableDeclarators
 
 statement -> block
 statement -> IF parExpression statement (ELSE statement)?
-statement -> FOREACH ( forControl ) statement
+statement -> FOREACH LPAREN forControl RPAREN statement
 statement -> WHILE parExpression statement
 statement -> DO statement WHILE parExpression
-statement -> SWITCH parExpression { switchBlockStatementGroup* switchLabel* }
+statement -> SWITCH parExpression LBRACE switchBlockStatementGroup* switchLabel* RBRACE
 statement -> RETURN expression?
 statement -> BREAK IDENTIFIER?
 statement -> CONTINUE IDENTIFIER?
@@ -36,7 +36,7 @@ statement -> comment
 comment -> '//' literal
 
 forControl -> foreachControl
-forControl -> forInit? , expression? , expressionList?
+forControl -> forInit? COMMA expression? COMMA expressionList?
 
 foreachControl -> type variableDeclaratorId IN expression
 
@@ -52,19 +52,19 @@ writeToStd -> WRITE (expression | IDENTIFIER)* (expression | IDENTIFIER)+
 
 readFromStd -> READ IDENTIFIER
 
-variableDeclarators -> variableDeclarator (, variableDeclarator)*
+variableDeclarators -> variableDeclarator (COMMA variableDeclarator)*
 
-variableDeclarator -> variableDeclaratorId (<- variableInitializer)?
-variableDeclarator -> (variableInitializer ->) variableDeclaratorId
+variableDeclarator -> variableDeclaratorId ( ASSIGN_LEFT variableInitializer )?
+variableDeclarator -> ( variableInitializer ASSIGN_RIGHT ) variableDeclaratorId
 
 variableDeclaratorId -> IDENTIFIER
 
 variableInitializer -> expression
 
 
-parExpression -> ( expression )
+parExpression -> LPAREN expression RPAREN
 
-expressionList -> expression (, expression)*
+expressionList -> expression (COMMA expression)*
 
 expression -> primary
 expression -> expression bop=DOT
@@ -72,7 +72,7 @@ expression -> expression bop=DOT
       | methodCall
       )
 expression -> methodCall
-expression -> ( type ) expression
+expression -> LPAREN type RPAREN expression
 expression -> expression postfix=(INC | DEC)
 expression -> prefix=(ADD | SUB | INC | DEC) expression
 expression -> prefix=(TILDE | BANG) expression
@@ -107,8 +107,7 @@ primitiveType -> ANY
 
 formalParameters -> ( formalParameterList? )
 
-formalParameterList -> formalParameter (, formalParameter)* (, lastFormalParameter)?
-formalParameterList -> lastFormalParameter
+formalParameterList -> formalParameter (COMMA formalParameter)*
 
 formalParameter -> type variableDeclaratorId
 
