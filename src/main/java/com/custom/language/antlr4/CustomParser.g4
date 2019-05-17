@@ -19,7 +19,7 @@ functionsDeclaration
     ;
 
 methodDeclaration
-    : typeOrVoid IDENTIFIER formalParameters (LBRACK RBRACK)* methodBody
+    : typeOrVoid IDENTIFIER formalParameters methodBody
     ;
 
 methodBody
@@ -57,6 +57,11 @@ statement
     | readFromStd
     | statementExpression=expression
     | identifierLabel=IDENTIFIER COLON statement
+    | comment
+    ;
+
+comment
+    : SINGLE_COMMENT literal
     ;
 
 forControl
@@ -102,7 +107,7 @@ variableDeclarator
     ;
 
 variableDeclaratorId
-    : IDENTIFIER (LBRACK RBRACK)*
+    : IDENTIFIER
     ;
 
 variableInitializer
@@ -136,13 +141,10 @@ expression
     | expression (LT LT | GT GT GT | GT GT) expression
     | expression bop=(LE | GE | GT | LT) expression
     | expression bop=(EQUAL | NOTEQUAL ) expression
-    | expression bop=BITAND expression
     | expression bop=CARET expression
-    | expression bop=BITOR expression
     | expression bop=AND expression
     | expression bop=OR expression
     | expression bop=QUESTION expression COLON expression
-    | <assoc=right> expression
       bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN)
       expression
     ;
@@ -165,7 +167,7 @@ typeOrVoid
     ;
 
 type
-    : (primitiveType) (LBRACK RBRACK)*
+    : (primitiveType)
     ;
 
 primitiveType
@@ -207,9 +209,3 @@ integerLiteral
 floatLiteral
     : FLOAT_LITERAL
     ;
-
-
-
-
-
-
