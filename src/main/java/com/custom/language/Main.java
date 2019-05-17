@@ -1,6 +1,5 @@
 package com.custom.language;
 
-import com.custom.language.antlr4.CustomListener;
 import com.custom.language.antlr4.generated.CustomLexer;
 import com.custom.language.antlr4.generated.CustomParser;
 import com.custom.language.antlr4.generated.CustomParserBaseVisitor;
@@ -43,27 +42,9 @@ class Main {
             CustomParser parser = new CustomParser(tokenStream);
 
             CustomParserBaseVisitor<Variable> variableVisitor = new CustomParserBaseVisitor<>();
-
             parser.compilationUnit().accept(variableVisitor);
 
-            /*
-             * get the top node of the AST. This corresponds to the topmost rule of equation.q4, "equation"
-             */
-
-//            ParseInfo parseInfo = parser.getParseInfo();
-//            ParserRuleContext context = parser.getContext();
-//            String text = context.getText();
-//            final Grammar pg = Grammar.load(parserGrammarFileName, lg);
-//            ANTLRFileStream input = new ANTLRFileStream(fileNameToParse);
-//            LexerInterpreter lexEngine = pg.createLexerInterpreter(input);
-//            CommonTokenStream tokens = new CommonTokenStream(lexEngine);
-//            ParserInterpreter parser = pg.createParserInterpreter(tokens);
-//            ParseTree t = parser.parse(pg.getRule(startRule).index);
-//            ParserRuleContext context2 = parser.getContext();
             System.out.println("Parsed: " + parser.getTokenStream().getText());
-
-            //System.out.println(parser.compilationUnit().fileContent().size());
-
 
         } catch (IOException e) {
             e.printStackTrace();

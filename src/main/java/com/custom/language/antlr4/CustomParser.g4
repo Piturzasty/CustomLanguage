@@ -146,9 +146,15 @@ expression
     | expression bop=AND expression
     | expression bop=OR expression
     | expression bop=QUESTION expression COLON expression
+    | showCall
     | <assoc=right> expression
       bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN)
       expression
+    ;
+
+showCall
+    : SHOW expression
+    | SHOW IDENTIFIER
     ;
 
 primary
