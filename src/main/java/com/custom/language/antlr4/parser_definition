@@ -1,0 +1,128 @@
+compilationUnit -> { fileContent }
+
+fileContent -> functionsDeclaration* mainDeclaration
+mainDeclaration -> main () methodBody
+
+functionsDeclaration -> methodDeclaration
+
+methodDeclaration -> typeOrVoid IDENTIFIER formalParameters ([])* methodBody
+
+methodBody -> block
+
+
+block -> { blockStatement* }
+
+blockStatement -> localVariableDeclaration
+blockStatement -> statement
+
+localVariableDeclaration -> variableDeclaratorId : type (<- variableInitializer)?
+localVariableDeclaration -> variableInitializer -> variableDeclaratorId : type
+localVariableDeclaration -> type variableDeclarators
+
+statement -> block
+statement -> IF parExpression statement (ELSE statement)?
+statement -> FOREACH ( forControl ) statement
+statement -> WHILE parExpression statement
+statement -> DO statement WHILE parExpression
+statement -> SWITCH parExpression { switchBlockStatementGroup* switchLabel* }
+statement -> RETURN expression?
+statement -> BREAK IDENTIFIER?
+statement -> CONTINUE IDENTIFIER?
+statement -> writeToStd
+statement -> readFromStd
+statement -> expression
+statement -> IDENTIFIER : statement
+
+forControl -> foreachControl
+forControl -> forInit? , expression? , forUpdate=expressionList?
+
+foreachControl -> type variableDeclaratorId IN expression
+
+forInit -> localVariableDeclaration
+forInit -> expressionList
+
+switchBlockStatementGroup -> switchLabel+ blockStatement+
+
+switchLabel -> CASE (expression | IDENTIFIER) COLON
+switchLabel -> DEFAULT COLON
+
+writeToStd -> WRITE (expression | IDENTIFIER)* (expression | IDENTIFIER)+
+
+readFromStd -> READ IDENTIFIER
+
+variableDeclarators -> variableDeclarator (, variableDeclarator)*
+
+variableDeclarator -> variableDeclaratorId (<- variableInitializer)?
+variableDeclarator -> (variableInitializer -> ) variableDeclaratorId
+
+variableDeclaratorId -> IDENTIFIER (LBRACK RBRACK)*
+
+variableInitializer -> expression
+
+
+parExpression -> ( expression )
+
+expressionList -> expression (, expression)*
+
+expression -> primary
+expression -> expression bop=DOT
+      ( IDENTIFIER
+      | methodCall
+      )
+expression -> expression [ expression ]
+expression -> methodCall
+expression -> ( type ) expression
+expression -> expression postfix=(INC | DEC)
+expression -> prefix=(ADD | SUB | INC | DEC) expression
+expression -> prefix=(TILDE | BANG) expression
+expression -> expression bop=(MUL |DIV|MOD) expression
+expression -> expression bop=(ADD|SUB) expression
+expression -> expression (LT LT | GT GT GT | GT GT) expression
+expression -> expression bop=(LE | GE | GT | LT) expression
+expression -> expression bop=(EQUAL | NOTEQUAL ) expression
+expression -> expression bop=BITAND expression
+expression -> expression bop=CARET expression
+expression -> expression bop=BITOR expression
+expression -> expression bop=AND expression
+expression -> expression bop=OR expression
+expression -> expression bop=QUESTION expression COLON expression
+expression -> <assoc=right> expression
+expression -> bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN) expression
+
+primary -> ( expression )
+primary -> literal
+primary -> IDENTIFIER
+
+methodCall -> IDENTIFIER ( expressionList? )
+
+
+typeOrVoid -> type
+typeOrVoid -> VOID
+
+type -> (primitiveType) ([ ])*
+
+primitiveType -> BOOLEAN
+primitiveType -> INT
+primitiveType -> FLOAT
+primitiveType -> ANY
+
+
+formalParameters -> ( formalParameterList? )
+
+formalParameterList -> formalParameter (, formalParameter)* (, lastFormalParameter)?
+formalParameterList -> lastFormalParameter
+
+formalParameter -> type variableDeclaratorId
+
+lastFormalParameter -> type ... variableDeclaratorId
+
+literal -> integerLiteral
+literal -> floatLiteral
+literal -> STRING_LITERAL
+literal -> BOOL_LITERAL
+literal -> NULL_LITERAL
+
+integerLiteral -> DECIMAL_LITERAL
+integerLiteral -> BINARY_LITERAL
+
+floatLiteral -> FLOAT_LITERAL
