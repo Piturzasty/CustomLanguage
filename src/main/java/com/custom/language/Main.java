@@ -24,30 +24,19 @@ class Main {
     public static void main(String[] args) {
         System.out.println("Custom Language");
         try {
-            /*
-             * get the input file as an InputStream
-             */
-            InputStream inputStream = Main.class.getResourceAsStream("/example1.txt");
-            /*
-             * make Lexer
-             */
-            Lexer lexer = new CustomLexer(CharStreams.fromStream(inputStream));
-            /*
-             * get a TokenStream on the Lexer
-             */
-            TokenStream tokenStream = new CommonTokenStream(lexer);
-            /*
-             * make a Parser on the token stream
-             */
-            CustomParser parser = new CustomParser(tokenStream);
-
-            CustomParserBaseVisitor<Variable> variableVisitor = new CustomParserBaseVisitor<>();
-            parser.compilationUnit().accept(variableVisitor);
-
-            System.out.println("Parsed: " + parser.getTokenStream().getText());
-
+            parseFile("/example1.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected static void parseFile(String resourceFileName) throws IOException {
+        InputStream inputStream = Main.class.getResourceAsStream(resourceFileName);
+        Lexer lexer = new CustomLexer(CharStreams.fromStream(inputStream));
+        TokenStream tokenStream = new CommonTokenStream(lexer);
+        CustomParser parser = new CustomParser(tokenStream);
+        CustomParserBaseVisitor<Variable> variableVisitor = new CustomParserBaseVisitor<>();
+        parser.compilationUnit().accept(variableVisitor);
+//        System.out.println("Parsed: " + parser.getTokenStream().getText());
     }
 }

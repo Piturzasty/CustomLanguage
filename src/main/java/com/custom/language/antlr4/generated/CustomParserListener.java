@@ -108,6 +108,33 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitStatement(CustomParser.StatementContext ctx);
 	/**
+     * Enter a parse tree produced by {@link CustomParser#elseStatement}.
+     * @param ctx the parse tree
+     */
+    void enterElseStatement(CustomParser.ElseStatementContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link CustomParser#elseStatement}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitElseStatement(CustomParser.ElseStatementContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link CustomParser#comment}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterComment(CustomParser.CommentContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link CustomParser#comment}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitComment(CustomParser.CommentContext ctx);
+
+    /**
 	 * Enter a parse tree produced by {@link CustomParser#forControl}.
 	 * @param ctx the parse tree
 	 */
@@ -327,16 +354,6 @@ public interface CustomParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFormalParameter(CustomParser.FormalParameterContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CustomParser#lastFormalParameter}.
-	 * @param ctx the parse tree
-	 */
-	void enterLastFormalParameter(CustomParser.LastFormalParameterContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CustomParser#lastFormalParameter}.
-	 * @param ctx the parse tree
-	 */
-	void exitLastFormalParameter(CustomParser.LastFormalParameterContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#literal}.
 	 * @param ctx the parse tree

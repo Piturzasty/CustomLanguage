@@ -39,13 +39,14 @@ blockStatement
 
 localVariableDeclaration
     : variableDeclaratorId COLON type (ASSIGN_LEFT variableInitializer)?
+    | variableDeclaratorId ASSIGN_LEFT variableInitializer
     | variableInitializer ASSIGN_RIGHT variableDeclaratorId COLON type
     | type variableDeclarators
     ;
 
 statement
     : blockLabel=block
-    | IF parExpression statement (ELSE statement)?
+    | IF parExpression statement (ELSE elseStatement)?
     | FOREACH LPAREN forControl RPAREN statement
     | WHILE parExpression statement
     | DO statement WHILE parExpression
@@ -58,6 +59,10 @@ statement
     | statementExpression=expression
     | identifierLabel=IDENTIFIER COLON statement
     | comment
+    ;
+
+elseStatement
+    : statement
     ;
 
 comment
@@ -98,7 +103,8 @@ readFromStd
 // VARIABLES
 
 variableDeclarators
-    : variableDeclarator (COMMA variableDeclarator)*
+    : variableDeclarator
+    | variableDeclaratorId (COMMA variableDeclaratorId)* (ASSIGN_LEFT variableInitializer)?
     ;
 
 variableDeclarator
@@ -126,10 +132,6 @@ expressionList
 
 expression
     : primary
-    | expression bop=DOT
-      ( IDENTIFIER
-      | methodCall
-      )
     | expression LBRACK expression RBRACK
     | methodCall
     | LPAREN type RPAREN expression

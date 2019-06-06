@@ -71,6 +71,21 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatement(CustomParser.StatementContext ctx);
 	/**
+     * Visit a parse tree produced by {@link CustomParser#elseStatement}.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    T visitElseStatement(CustomParser.ElseStatementContext ctx);
+
+    /**
+     * Visit a parse tree produced by {@link CustomParser#comment}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    T visitComment(CustomParser.CommentContext ctx);
+
+    /**
 	 * Visit a parse tree produced by {@link CustomParser#forControl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -202,12 +217,6 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFormalParameter(CustomParser.FormalParameterContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CustomParser#lastFormalParameter}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLastFormalParameter(CustomParser.LastFormalParameterContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CustomParser#literal}.
 	 * @param ctx the parse tree

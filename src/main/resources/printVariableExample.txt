@@ -1,0 +1,9 @@
+{
+    main()
+    {
+        var1 <- "Hello my dear"
+        var2: int <- 8
+        write var1
+        write var2
+    }
+}
