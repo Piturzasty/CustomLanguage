@@ -15,37 +15,50 @@ import java.util.List;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class CustomParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
+	private static final String[] _SYMBOLIC_NAMES = {
+			null, "IMPORT", "FOREACH", "IN", "DO", "WHILE", "IF", "ELSE", "SWITCH",
+			"CASE", "CONTINUE", "BREAK", "DEFAULT", "WRITE", "READ", "MAIN", "RETURN",
+			"FLOAT", "INT", "VOID", "BOOLEAN", "ANY", "DECIMAL_LITERAL", "BINARY_LITERAL",
+			"FLOAT_LITERAL", "BOOL_LITERAL", "STRING_LITERAL", "NULL_LITERAL", "LPAREN",
+			"RPAREN", "LBRACE", "RBRACE", "LBRACK", "RBRACK", "COMMA", "DOT", "ASSIGN_LEFT",
+			"ASSIGN_RIGHT", "GT", "LT", "BANG", "TILDE", "QUESTION", "COLON", "EQUAL",
+			"LE", "GE", "NOTEQUAL", "AND", "OR", "INC", "DEC", "ADD", "SUB", "MUL",
+			"DIV", "BITAND", "BITOR", "CARET", "MOD", "ADD_ASSIGN", "SUB_ASSIGN",
+			"MUL_ASSIGN", "DIV_ASSIGN", "AND_ASSIGN", "OR_ASSIGN", "XOR_ASSIGN", "MOD_ASSIGN",
+			"LSHIFT_ASSIGN", "RSHIFT_ASSIGN", "URSHIFT_ASSIGN", "ELLIPSIS", "WS",
+			"COMMENT", "SINGLE_COMMENT", "IDENTIFIER"
+	};
 
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		IMPORT=1, FOREACH=2, IN=3, DO=4, WHILE=5, IF=6, ELSE=7, SWITCH=8, CASE=9, 
-		CONTINUE=10, BREAK=11, DEFAULT=12, WRITE=13, READ=14, MAIN=15, RETURN=16, 
-		FLOAT=17, INT=18, VOID=19, BOOLEAN=20, ANY=21, DECIMAL_LITERAL=22, BINARY_LITERAL=23, 
-		FLOAT_LITERAL=24, BOOL_LITERAL=25, STRING_LITERAL=26, NULL_LITERAL=27, 
-		LPAREN=28, RPAREN=29, LBRACE=30, RBRACE=31, LBRACK=32, RBRACK=33, COMMA=34, 
-		DOT=35, ASSIGN_LEFT=36, ASSIGN_RIGHT=37, GT=38, LT=39, BANG=40, TILDE=41, 
-		QUESTION=42, COLON=43, EQUAL=44, LE=45, GE=46, NOTEQUAL=47, AND=48, OR=49, 
-		INC=50, DEC=51, ADD=52, SUB=53, MUL=54, DIV=55, BITAND=56, BITOR=57, CARET=58, 
-		MOD=59, ADD_ASSIGN=60, SUB_ASSIGN=61, MUL_ASSIGN=62, DIV_ASSIGN=63, AND_ASSIGN=64, 
-		OR_ASSIGN=65, XOR_ASSIGN=66, MOD_ASSIGN=67, LSHIFT_ASSIGN=68, RSHIFT_ASSIGN=69,
-            URSHIFT_ASSIGN = 70, ELLIPSIS = 71, WS = 72, COMMENT = 73, SINGLE_COMMENT = 74,
-            IDENTIFIER = 75;
+	IMPORT=1, FOREACH=2, IN=3, DO=4, WHILE=5, IF=6, ELSE=7, SWITCH=8, CASE=9,
+	CONTINUE=10, BREAK=11, DEFAULT=12, WRITE=13, READ=14, MAIN=15, RETURN=16,
+	FLOAT=17, INT=18, VOID=19, BOOLEAN=20, ANY=21, DECIMAL_LITERAL=22, BINARY_LITERAL=23,
+	FLOAT_LITERAL=24, BOOL_LITERAL=25, STRING_LITERAL=26, NULL_LITERAL=27,
+	LPAREN=28, RPAREN=29, LBRACE=30, RBRACE=31, LBRACK=32, RBRACK=33, COMMA=34,
+	DOT=35, ASSIGN_LEFT=36, ASSIGN_RIGHT=37, GT=38, LT=39, BANG=40, TILDE=41,
+	QUESTION=42, COLON=43, EQUAL=44, LE=45, GE=46, NOTEQUAL=47, AND=48, OR=49,
+	INC=50, DEC=51, ADD=52, SUB=53, MUL=54, DIV=55, BITAND=56, BITOR=57, CARET=58,
+	MOD=59, ADD_ASSIGN=60, SUB_ASSIGN=61, MUL_ASSIGN=62, DIV_ASSIGN=63, AND_ASSIGN=64,
+	OR_ASSIGN=65, XOR_ASSIGN=66, MOD_ASSIGN=67, LSHIFT_ASSIGN=68, RSHIFT_ASSIGN=69,
+	URSHIFT_ASSIGN = 70, ELLIPSIS = 71, WS = 72, COMMENT = 73, SINGLE_COMMENT = 74,
+	IDENTIFIER = 75;
 	public static final int
-		RULE_compilationUnit = 0, RULE_fileContent = 1, RULE_mainDeclaration = 2, 
-		RULE_functionsDeclaration = 3, RULE_methodDeclaration = 4, RULE_methodBody = 5, 
-		RULE_block = 6, RULE_blockStatement = 7, RULE_localVariableDeclaration = 8,
-            RULE_statement = 9, RULE_elseStatement = 10, RULE_comment = 11, RULE_forControl = 12,
-            RULE_foreachControl = 13, RULE_forInit = 14, RULE_switchBlockStatementGroup = 15,
-            RULE_switchLabel = 16, RULE_writeToStd = 17, RULE_readFromStd = 18, RULE_variableDeclarators = 19,
-            RULE_variableDeclarator = 20, RULE_variableDeclaratorId = 21, RULE_variableInitializer = 22,
-            RULE_parExpression = 23, RULE_expressionList = 24, RULE_expression = 25,
-            RULE_primary = 26, RULE_methodCall = 27, RULE_typeOrVoid = 28, RULE_type = 29,
-            RULE_primitiveType = 30, RULE_formalParameters = 31, RULE_formalParameterList = 32,
-            RULE_formalParameter = 33, RULE_literal = 34, RULE_integerLiteral = 35,
-            RULE_floatLiteral = 36;
+	RULE_compilationUnit = 0, RULE_fileContent = 1, RULE_mainDeclaration = 2,
+	RULE_functionsDeclaration = 3, RULE_methodDeclaration = 4, RULE_methodBody = 5,
+	RULE_block = 6, RULE_blockStatement = 7, RULE_localVariableDeclaration = 8,
+	RULE_statement = 9, RULE_elseStatement = 10, RULE_comment = 11, RULE_forControl = 12,
+	RULE_foreachControl = 13, RULE_forInit = 14, RULE_switchBlockStatementGroup = 15,
+	RULE_switchLabel = 16, RULE_writeToStd = 17, RULE_readFromStd = 18, RULE_variableDeclarators = 19,
+	RULE_variableDeclarator = 20, RULE_variableDeclaratorId = 21, RULE_variableInitializer = 22,
+	RULE_parExpression = 23, RULE_expressionList = 24, RULE_expression = 25,
+	RULE_primary = 26, RULE_methodCall = 27, RULE_typeOrVoid = 28, RULE_type = 29,
+	RULE_primitiveType = 30, RULE_formalParameters = 31, RULE_formalParameterList = 32,
+	RULE_formalParameter = 33, RULE_literal = 34, RULE_integerLiteral = 35,
+	RULE_floatLiteral = 36;
 	public static final String[] ruleNames = {
 		"compilationUnit", "fileContent", "mainDeclaration", "functionsDeclaration", 
 		"methodDeclaration", "methodBody", "block", "blockStatement", "localVariableDeclaration",
@@ -56,7 +69,7 @@ public class CustomParser extends Parser {
             "typeOrVoid", "type", "primitiveType", "formalParameters", "formalParameterList",
             "formalParameter", "literal", "integerLiteral", "floatLiteral"
     };
-    public static final String _serializedATN =
+	public static final String _serializedATN =
             "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3M\u01aa\4\2\t\2\4" +
                     "\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t" +
                     "\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22" +
@@ -233,6 +246,7 @@ public class CustomParser extends Parser {
 	 */
 	@Deprecated
 	public static final String[] tokenNames;
+
 	static {
 		tokenNames = new String[_SYMBOLIC_NAMES.length];
 		for (int i = 0; i < tokenNames.length; i++) {
@@ -270,7 +284,6 @@ public class CustomParser extends Parser {
 
 	@Override
 	public ATN getATN() { return _ATN; }
-
 	public CustomParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
@@ -298,21 +311,8 @@ public class CustomParser extends Parser {
 			if ( visitor instanceof CustomParserVisitor ) return ((CustomParserVisitor<? extends T>)visitor).visitCompilationUnit(this);
 			else return visitor.visitChildren(this);
 		}
-	}
 
-    private static final String[] _SYMBOLIC_NAMES = {
-            null, "IMPORT", "FOREACH", "IN", "DO", "WHILE", "IF", "ELSE", "SWITCH",
-            "CASE", "CONTINUE", "BREAK", "DEFAULT", "WRITE", "READ", "MAIN", "RETURN",
-            "FLOAT", "INT", "VOID", "BOOLEAN", "ANY", "DECIMAL_LITERAL", "BINARY_LITERAL",
-            "FLOAT_LITERAL", "BOOL_LITERAL", "STRING_LITERAL", "NULL_LITERAL", "LPAREN",
-            "RPAREN", "LBRACE", "RBRACE", "LBRACK", "RBRACK", "COMMA", "DOT", "ASSIGN_LEFT",
-            "ASSIGN_RIGHT", "GT", "LT", "BANG", "TILDE", "QUESTION", "COLON", "EQUAL",
-            "LE", "GE", "NOTEQUAL", "AND", "OR", "INC", "DEC", "ADD", "SUB", "MUL",
-            "DIV", "BITAND", "BITOR", "CARET", "MOD", "ADD_ASSIGN", "SUB_ASSIGN",
-            "MUL_ASSIGN", "DIV_ASSIGN", "AND_ASSIGN", "OR_ASSIGN", "XOR_ASSIGN", "MOD_ASSIGN",
-            "LSHIFT_ASSIGN", "RSHIFT_ASSIGN", "URSHIFT_ASSIGN", "ELLIPSIS", "WS",
-            "COMMENT", "SINGLE_COMMENT", "IDENTIFIER"
-    };
+	}
 
 	public static class FileContentContext extends ParserRuleContext {
 		public MainDeclarationContext mainDeclaration() {
