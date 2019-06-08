@@ -29,12 +29,6 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMainDeclaration(CustomParser.MainDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#functionsDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionsDeclaration(CustomParser.FunctionsDeclarationContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link CustomParser#methodDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -65,44 +59,95 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#statement}.
+	 * Visit a parse tree produced by the {@code ifElseStatement}
+	 * labeled alternative in.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatement(CustomParser.StatementContext ctx);
+	T visitIfElseStatement(CustomParser.IfElseStatementContext ctx);
 	/**
-     * Visit a parse tree produced by {@link CustomParser#elseStatement}.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitElseStatement(CustomParser.ElseStatementContext ctx);
-
-    /**
-     * Visit a parse tree produced by {@link CustomParser#comment}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitComment(CustomParser.CommentContext ctx);
-
-    /**
-	 * Visit a parse tree produced by {@link CustomParser#forControl}.
+	 * Visit a parse tree produced by the {@code forControl}
+	 * labeled alternative in.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitForControl(CustomParser.ForControlContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#foreachControl}.
+	 * Visit a parse tree produced by the {@code whileControl}
+	 * labeled alternative in.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitForeachControl(CustomParser.ForeachControlContext ctx);
+	T visitWhileControl(CustomParser.WhileControlContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#forInit}.
+	 * Visit a parse tree produced by the {@code doWhileControl}
+	 * labeled alternative in.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitForInit(CustomParser.ForInitContext ctx);
+	T visitDoWhileControl(CustomParser.DoWhileControlContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code switchControl}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSwitchControl(CustomParser.SwitchControlContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code returnStatement}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnStatement(CustomParser.ReturnStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code breakStatement}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBreakStatement(CustomParser.BreakStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code continueStatement}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContinueStatement(CustomParser.ContinueStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code writeToStd}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWriteToStd(CustomParser.WriteToStdContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code writeNewLineToStd}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWriteNewLineToStd(CustomParser.WriteNewLineToStdContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code readFromStd}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReadFromStd(CustomParser.ReadFromStdContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code comment}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComment(CustomParser.CommentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CustomParser#elseStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseStatement(CustomParser.ElseStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CustomParser#switchBlockStatementGroup}.
 	 * @param ctx the parse tree
@@ -115,18 +160,6 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSwitchLabel(CustomParser.SwitchLabelContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CustomParser#writeToStd}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitWriteToStd(CustomParser.WriteToStdContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CustomParser#readFromStd}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitReadFromStd(CustomParser.ReadFromStdContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CustomParser#variableDeclarators}.
 	 * @param ctx the parse tree
@@ -164,11 +197,103 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressionList(CustomParser.ExpressionListContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#expression}.
+	 * Visit a parse tree produced by the {@code expressionCompare}
+	 * labeled alternative in.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression(CustomParser.ExpressionContext ctx);
+	T visitExpressionCompare(CustomParser.ExpressionCompareContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionNegate}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionNegate(CustomParser.ExpressionNegateContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionTernaryConditional}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionTernaryConditional(CustomParser.ExpressionTernaryConditionalContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionAssign}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionAssign(CustomParser.ExpressionAssignContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionMulDivModExpression}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionMulDivModExpression(CustomParser.ExpressionMulDivModExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionEqual}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionEqual(CustomParser.ExpressionEqualContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionPrimary}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionPrimary(CustomParser.ExpressionPrimaryContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionAddSubExpression}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionAddSubExpression(CustomParser.ExpressionAddSubExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionAnd}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionAnd(CustomParser.ExpressionAndContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionCast}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionCast(CustomParser.ExpressionCastContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionOr}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionOr(CustomParser.ExpressionOrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionIncDec}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionIncDec(CustomParser.ExpressionIncDecContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionMethodCall}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionMethodCall(CustomParser.ExpressionMethodCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionCarret}
+	 * labeled alternative in.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionCarret(CustomParser.ExpressionCarretContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CustomParser#primary}.
 	 * @param ctx the parse tree

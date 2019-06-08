@@ -7,15 +7,11 @@ compilationUnit
     ;
 
 fileContent
-    : functionsDeclaration* mainDeclaration
+    : methodDeclaration* mainDeclaration
     ;
 
 mainDeclaration
     : MAIN LPAREN RPAREN methodBody
-    ;
-
-functionsDeclaration
-    : methodDeclaration
     ;
 
 methodDeclaration
@@ -45,42 +41,22 @@ localVariableDeclaration
     ;
 
 statement
-    : blockLabel=block
-    | IF parExpression statement (ELSE elseStatement)?
-    | FOREACH LPAREN forControl RPAREN statement
-    | WHILE parExpression statement
-    | DO statement WHILE parExpression
-    | SWITCH parExpression LBRACE switchBlockStatementGroup* switchLabel* RBRACE
-    | RETURN expression?
-    | BREAK IDENTIFIER?
-    | CONTINUE IDENTIFIER?
-    | writeToStd
-    | readFromStd
-    | statementExpression=expression
-    | identifierLabel=IDENTIFIER COLON statement
-    | comment
+    : IF parExpression statement (ELSE elseStatement)? #ifElseStatement
+    | FOREACH LPAREN localVariableDeclaration? COMMA expression? COMMA forUpdate=expressionList? RPAREN statement #forControl
+    | WHILE parExpression statement #whileControl
+    | DO statement WHILE parExpression #doWhileControl
+    | SWITCH parExpression LBRACE switchBlockStatementGroup* switchLabel* RBRACE #switchControl
+    | RETURN expression? #returnStatement
+    | BREAK IDENTIFIER? #breakStatement
+    | CONTINUE IDENTIFIER? #continueStatement
+    | WRITE (expression | IDENTIFIER)* (expression | IDENTIFIER)+ #writeToStd
+    | WRITELINE (expression | IDENTIFIER)* (expression | IDENTIFIER)+ #writeNewLineToStd
+    | READ IDENTIFIER #readFromStd
+    | SINGLE_COMMENT literal #comment
     ;
 
 elseStatement
     : statement
-    ;
-
-comment
-    : SINGLE_COMMENT literal
-    ;
-
-forControl
-    : foreachControl
-    | forInit? COMMA expression? COMMA forUpdate=expressionList?
-    ;
-
-foreachControl
-    : type variableDeclaratorId IN expression
-    ;
-
-forInit
-    : localVariableDeclaration
-    | expressionList
     ;
 
 switchBlockStatementGroup
@@ -90,14 +66,6 @@ switchBlockStatementGroup
 switchLabel
     : CASE (constantExpression=expression | enumConstantName=IDENTIFIER) COLON
     | DEFAULT COLON
-    ;
-
-writeToStd
-    : WRITE (expression | IDENTIFIER)* (expression | IDENTIFIER)+
-    ;
-
-readFromStd
-    : READ IDENTIFIER
     ;
 
 // VARIABLES
@@ -131,24 +99,20 @@ expressionList
     ;
 
 expression
-    : primary
-    | expression LBRACK expression RBRACK
-    | methodCall
-    | LPAREN type RPAREN expression
-    | expression postfix=(INC | DEC)
-    | prefix=(ADD | SUB | INC | DEC) expression
-    | prefix=(TILDE | BANG) expression
-    | expression bop=(MUL |DIV|MOD) expression
-    | expression bop=(ADD|SUB) expression
-    | expression (LT LT | GT GT GT | GT GT) expression
-    | expression bop=(LE | GE | GT | LT) expression
-    | expression bop=(EQUAL | NOTEQUAL ) expression
-    | expression bop=CARET expression
-    | expression bop=AND expression
-    | expression bop=OR expression
-    | expression bop=QUESTION expression COLON expression
-      bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN)
-      expression
+    : primary #expressionPrimary
+    | methodCall #expressionMethodCall
+    | LPAREN type RPAREN expression #expressionCast
+    | expression postfix=(INC | DEC) #expressionIncDec
+    | prefix=(TILDE | BANG) expression #expressionNegate
+    | expression bop=(MUL | DIV | MOD) expression #expressionMulDivModExpression
+    | expression bop=(ADD | SUB) expression #expressionAddSubExpression
+    | expression bop=(LE | GE | GT | LT) expression #expressionCompare
+    | expression bop=(EQUAL | NOTEQUAL ) expression #expressionEqual
+    | expression bop=CARET expression #expressionCarret
+    | expression bop=AND expression #expressionAnd
+    | expression bop=OR expression #expressionOr
+    | expression bop=QUESTION expression COLON expression #expressionTernaryConditional
+    | expression bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN ) expression #expressionAssign
     ;
 
 primary
@@ -169,7 +133,7 @@ typeOrVoid
     ;
 
 type
-    : (primitiveType)
+    : primitiveType
     ;
 
 primitiveType

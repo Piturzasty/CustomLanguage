@@ -19,6 +19,7 @@ BREAK:              'break';
 DEFAULT:            'default';
 
 WRITE:              'write';
+WRITELINE:          'writeln';
 READ:               'read';
 
 MAIN:               'main';
