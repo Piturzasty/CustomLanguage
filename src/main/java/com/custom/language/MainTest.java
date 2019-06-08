@@ -80,7 +80,7 @@ public class MainTest {
     public void simpleBooleanOperationsTest() {
         try {
             Main.parseFile("/simpleBooleanOperationsExample.txt");
-            assertEquals("true\nfalse\ntrue\n2\n3\n", outContent.toString());
+            assertEquals("true\nfalse\nfalse\ntrue\n", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

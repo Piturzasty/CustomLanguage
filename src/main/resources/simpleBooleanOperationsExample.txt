@@ -1,0 +1,16 @@
+{
+    main()
+    {
+        var1 <- true
+        var2: bool <- !var1
+        writeln var1
+
+        writeln var2
+
+        var3 <- var1 && var2
+        writeln var3
+
+        var4 <- var1 || var2
+        writeln var4
+    }
+}
