@@ -232,18 +232,6 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterElseStatement(CustomParser.ElseStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitElseStatement(CustomParser.ElseStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterSwitchBlockStatementGroup(CustomParser.SwitchBlockStatementGroupContext ctx) { }
 	/**
 	 * {@inheritDoc}

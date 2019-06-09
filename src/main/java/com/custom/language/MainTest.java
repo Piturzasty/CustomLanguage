@@ -134,6 +134,96 @@ public class MainTest {
         }
     }
 
+    @Test
+    public void simpleLessThanComparatorTest() {
+        try {
+            Main.parseFile("/simpleLessThanExample.txt");
+            assertEquals("true\nfalse\nfalse\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleLessEqualsComparatorTest() {
+        try {
+            Main.parseFile("/simpleLessEqualsExample.txt");
+            assertEquals("true\ntrue\nfalse\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleGreaterThanComparatorTest() {
+        try {
+            Main.parseFile("/simpleGreaterThanExample.txt");
+            assertEquals("false\nfalse\ntrue\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleGreaterEqualsComparatorTest() {
+        try {
+            Main.parseFile("/simpleGreaterEqualsExample.txt");
+            assertEquals("false\ntrue\ntrue\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleForLoopTest() {
+        try {
+            Main.parseFile("/simpleForLoopExample.txt");
+            assertEquals("0\n1.0\n2.0\n3.0\n4.0\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleIncrementTest() {
+        try {
+            Main.parseFile("/simpleIncrementExample.txt");
+            assertEquals("6.0\n3.0\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleDecrementTest() {
+        try {
+            Main.parseFile("/simpleDecrementExample.txt");
+            assertEquals("4.0\n1.0\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    @Test
+//    public void simpleDoWhileLoopTest() {
+//        try {
+//            Main.parseFile("/simpleDoWhileExample.txt");
+//            assertEquals("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n", outContent.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+//    @Test
+//    public void simpleWhileLoopTest() {
+//        try {
+//            Main.parseFile("/simpleWhileExample.txt");
+//            assertEquals("1\n2\n3\n4\n5\n6\n7\n8\n9\n", outContent.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     @After
     public void restoreStreams() {
         System.setOut(originalOut);

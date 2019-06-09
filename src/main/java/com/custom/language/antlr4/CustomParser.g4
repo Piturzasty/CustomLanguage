@@ -41,20 +41,16 @@ localVariableDeclaration
     ;
 
 statement
-    : IF parExpression statement (ELSE elseStatement)? #ifElseStatement
-    | FOREACH LPAREN localVariableDeclaration? COMMA expression? COMMA forUpdate=expressionList? RPAREN statement #forControl
-    | WHILE parExpression statement #whileControl
-    | DO statement WHILE parExpression #doWhileControl
+    : IF LPAREN parExpression RPAREN statement (ELSE statement)? #ifElseStatement
+    | FOREACH LPAREN localVariableDeclaration? COMMA expression COMMA expression RPAREN block #forControl
+    | WHILE LPAREN parExpression RPAREN block #whileControl
+    | DO block WHILE LPAREN parExpression RPAREN #doWhileControl
     | SWITCH parExpression LBRACE switchBlockStatementGroup* switchLabel* RBRACE #switchControl
     | RETURN expression? #returnStatement
     | WRITE expression #writeToStd
     | WRITELINE expression #writeNewLineToStd
     | READ IDENTIFIER #readFromStd
     | SINGLE_COMMENT literal #comment
-    ;
-
-elseStatement
-    : statement
     ;
 
 switchBlockStatementGroup

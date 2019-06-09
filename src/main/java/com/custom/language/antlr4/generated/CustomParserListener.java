@@ -208,16 +208,6 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitComment(CustomParser.CommentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#elseStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterElseStatement(CustomParser.ElseStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CustomParser#elseStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitElseStatement(CustomParser.ElseStatementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CustomParser#switchBlockStatementGroup}.
 	 * @param ctx the parse tree
 	 */

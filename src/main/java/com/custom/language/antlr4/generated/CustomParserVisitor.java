@@ -129,12 +129,6 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComment(CustomParser.CommentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#elseStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitElseStatement(CustomParser.ElseStatementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link CustomParser#switchBlockStatementGroup}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

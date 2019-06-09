@@ -1,0 +1,9 @@
+{
+    main()
+    {
+        var1 <- 5
+        writeln var1++
+        var2 <- 2 ++
+        writeln var2
+    }
+}

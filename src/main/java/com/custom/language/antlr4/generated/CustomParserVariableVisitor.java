@@ -202,9 +202,11 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         switch (ctx.postfix.getType()) {
             case CustomParser.INC:
                 value = new Variable(value.asDouble() + 1);
+                variables.put(ctx.expression().getText(), value);
                 return value;
             case CustomParser.DEC:
                 value = new Variable(value.asDouble() - 1);
+                variables.put(ctx.expression().getText(), value);
                 return value;
             default:
                 throw new RuntimeException("unknown operator: " + CustomParser.tokenNames[ctx.postfix.getType()]);
@@ -325,26 +327,31 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx) {
-        String id = ctx.IDENTIFIER().getText();
-        Variable variable = this.visit(ctx.variableInitializer());
-        variables.put(id, variable);
-        return variable;
+        if (ctx.IDENTIFIER() != null) {
+            String id = ctx.IDENTIFIER().getText();
+            Variable variable = this.visit(ctx.variableInitializer());
+            variables.put(id, variable);
+            return variable;
+        } else {
+            return Variable.VOID;
+        }
     }
 
     @Override
     public Variable visitIfElseStatement(CustomParser.IfElseStatementContext ctx) {
         if (new Variable(ctx.parExpression()).asBoolean()) {
-            this.visit(ctx.statement());
+            this.visit(ctx.statement(0));
         } else {
-            this.visit(ctx.elseStatement());
+            this.visit(ctx.statement(1));
         }
         return Variable.VOID;
     }
 
     @Override
     public Variable visitForControl(CustomParser.ForControlContext ctx) {
-        for (this.visit(ctx.localVariableDeclaration()); new Variable(this.visit(ctx.expression())).asBoolean(); this.visit(ctx.forUpdate)) {
-            visit(ctx.statement());
+        this.visit(ctx.localVariableDeclaration());
+        for (; new Variable(this.visit(ctx.expression(0))).asBoolean(); this.visit(ctx.expression(1))) {
+            visit(ctx.block());
         }
         return Variable.VOID;
     }
@@ -353,7 +360,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     public Variable visitWhileControl(CustomParser.WhileControlContext ctx) {
         Variable value = this.visit(ctx.parExpression());
         while (value.asBoolean()) {
-            this.visit(ctx.statement());
+            this.visit(ctx.block());
             value = this.visit(ctx.parExpression());
         }
         return Variable.VOID;
@@ -361,17 +368,12 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitDoWhileControl(CustomParser.DoWhileControlContext ctx) {
-        this.visit(ctx.statement());
+        this.visit(ctx.block());
         Variable value = this.visit(ctx.parExpression());
         while (value.asBoolean()) {
-            this.visit(ctx.statement());
+            this.visit(ctx.block());
             value = this.visit(ctx.parExpression());
         }
         return Variable.VOID;
-    }
-
-    @Override
-    public Variable visitElseStatement(CustomParser.ElseStatementContext ctx) {
-        return this.visit(ctx.statement());
     }
 }

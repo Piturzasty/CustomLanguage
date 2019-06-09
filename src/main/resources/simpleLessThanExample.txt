@@ -1,0 +1,8 @@
+{
+    main()
+    {
+        writeln 1 < 5
+        writeln 3 < 3
+        writeln 5 < 3
+    }
+}
