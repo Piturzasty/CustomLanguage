@@ -68,6 +68,19 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitBlock(CustomParser.BlockContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link CustomParser#blockStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockStatement(CustomParser.BlockStatementContext ctx);
+
+	/**
+	 * Exit a parse tree produced by {@link CustomParser#blockStatement}.
+	 *
+	 * @param ctx the parse tree
+	 */
+	void exitBlockStatement(CustomParser.BlockStatementContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link CustomParser#localVariableDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -433,26 +446,30 @@ public interface CustomParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrimary(CustomParser.PrimaryContext ctx);
+
 	/**
-     * Enter a parse tree produced by {@link CustomParser#typeOrVoid}.
+	 * Enter a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-    void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
+	void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
+
 	/**
-     * Exit a parse tree produced by {@link CustomParser#typeOrVoid}.
+	 * Exit a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-    void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
+	void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
+
 	/**
-     * Enter a parse tree produced by {@link CustomParser#type}.
+	 * Enter a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-    void enterType(CustomParser.TypeContext ctx);
+	void enterType(CustomParser.TypeContext ctx);
+
 	/**
-     * Exit a parse tree produced by {@link CustomParser#type}.
+	 * Exit a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-    void exitType(CustomParser.TypeContext ctx);
+	void exitType(CustomParser.TypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#formalParameters}.
 	 * @param ctx the parse tree

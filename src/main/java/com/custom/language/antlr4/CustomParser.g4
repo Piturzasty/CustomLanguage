@@ -25,11 +25,17 @@ methodBody
 // STATEMENTS / BLOCKS
 
 block
-    : LBRACE (localVariableDeclaration|statement)* RBRACE
+    : LBRACE blockStatement* RBRACE
+    ;
+
+blockStatement
+    : localVariableDeclaration
+    | statement
     ;
 
 localVariableDeclaration
-    : IDENTIFIER COLON type ASSIGN_LEFT variableInitializer
+    : IDENTIFIER COLON type (ASSIGN_LEFT variableInitializer)?
+    | IDENTIFIER ASSIGN_LEFT variableInitializer
     | variableInitializer ASSIGN_RIGHT IDENTIFIER COLON type
     | type variableDeclarators
     ;
@@ -48,7 +54,7 @@ statement
     ;
 
 switchBlockStatementGroup
-    : switchLabel+ (localVariableDeclaration|statement)+
+    : switchLabel+ blockStatement+
     ;
 
 switchLabel

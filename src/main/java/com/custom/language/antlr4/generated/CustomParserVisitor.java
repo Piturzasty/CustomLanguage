@@ -47,11 +47,18 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlock(CustomParser.BlockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#localVariableDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx);
+     * Visit a parse tree produced by {@link CustomParser#blockStatement}.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    T visitBlockStatement(CustomParser.BlockStatementContext ctx);
+
+    /**
+     * Visit a parse tree produced by {@link CustomParser#localVariableDeclaration}.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    T visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ifElseStatement}
 	 * labeled alternative in {@link CustomParser#statement}.

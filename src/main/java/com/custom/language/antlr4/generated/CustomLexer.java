@@ -21,8 +21,8 @@ public class CustomLexer extends Lexer {
 		RETURN=17, FLOAT=18, INT=19, VOID=20, BOOLEAN=21, ANY=22, DECIMAL_LITERAL=23, 
 		BINARY_LITERAL=24, FLOAT_LITERAL=25, BOOL_LITERAL=26, STRING_LITERAL=27, 
 		NULL_LITERAL=28, LPAREN=29, RPAREN=30, LBRACE=31, RBRACE=32, LBRACK=33, 
-		RBRACK=34, COMMA=35, DOT=36, ASSIGN_LEFT=37, ASSIGN_RIGHT=38, GT=39, LT=40, 
-		BANG=41, TILDE=42, QUESTION=43, COLON=44, EQUAL=45, LE=46, GE=47, NOTEQUAL=48,
+		RBRACK=34, COMMA=35, DOT=36, ASSIGN_LEFT=37, ASSIGN_RIGHT=38, GT=39, LT=40,
+            BANG = 41, TILDE = 42, QUESTION = 43, COLON = 44, EQUAL = 45, LE = 46, GE = 47, NOTEQUAL = 48,
             AND = 49, OR = 50, INC = 51, DEC = 52, ADD = 53, SUB = 54, MUL = 55, DIV = 56, BITAND = 57,
             BITOR = 58, CARET = 59, MOD = 60, ADD_ASSIGN = 61, SUB_ASSIGN = 62, MUL_ASSIGN = 63,
             DIV_ASSIGN = 64, AND_ASSIGN = 65, OR_ASSIGN = 66, XOR_ASSIGN = 67, MOD_ASSIGN = 68,
@@ -284,7 +284,7 @@ public class CustomLexer extends Lexer {
     public CustomLexer(CharStream input) {
         super(input);
         _interp = new LexerATNSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
-    }
+	}
 
 	@Override
 	@Deprecated
