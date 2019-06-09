@@ -1,0 +1,11 @@
+{
+    int func() {
+        writeln bar
+    }
+
+    main()
+    {
+        writeln "Hello my dear"
+        func()
+    }
+}

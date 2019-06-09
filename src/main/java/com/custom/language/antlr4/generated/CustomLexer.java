@@ -22,8 +22,8 @@ public class CustomLexer extends Lexer {
 		BINARY_LITERAL=24, FLOAT_LITERAL=25, BOOL_LITERAL=26, STRING_LITERAL=27, 
 		NULL_LITERAL=28, LPAREN=29, RPAREN=30, LBRACE=31, RBRACE=32, LBRACK=33, 
 		RBRACK=34, COMMA=35, DOT=36, ASSIGN_LEFT=37, ASSIGN_RIGHT=38, GT=39, LT=40, 
-		BANG=41, TILDE=42, QUESTION=43, COLON=44, EQUAL=45, LE=46, GE=47, NOTEQUAL=48, 
-		AND=49, OR=50, INC=51, DEC=52, ADD=53, SUB=54, MUL=55, DIV=56, BITAND=57,
+		BANG=41, TILDE=42, QUESTION=43, COLON=44, EQUAL=45, LE=46, GE=47, NOTEQUAL=48,
+            AND = 49, OR = 50, INC = 51, DEC = 52, ADD = 53, SUB = 54, MUL = 55, DIV = 56, BITAND = 57,
             BITOR = 58, CARET = 59, MOD = 60, ADD_ASSIGN = 61, SUB_ASSIGN = 62, MUL_ASSIGN = 63,
             DIV_ASSIGN = 64, AND_ASSIGN = 65, OR_ASSIGN = 66, XOR_ASSIGN = 67, MOD_ASSIGN = 68,
             ELLIPSIS = 69, WS = 70, COMMENT = 71, SINGLE_COMMENT = 72, IDENTIFIER = 73;
@@ -48,7 +48,11 @@ public class CustomLexer extends Lexer {
             "MOD_ASSIGN", "ELLIPSIS", "WS", "COMMENT", "SINGLE_COMMENT", "IDENTIFIER",
 		"ExponentPart", "EscapeSequence", "Digits", "LetterOrDigit", "Letter"
 	};
-
+    /**
+     * @deprecated Use {@link #VOCABULARY} instead.
+     */
+    @Deprecated
+    public static final String[] tokenNames;
     public static final String _serializedATN =
             "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2K\u021c\b\1\4\2\t" +
                     "\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13" +
@@ -238,6 +242,17 @@ public class CustomLexer extends Lexer {
                     "\u0124\u0127\u0129\u012c\u0134\u0138\u013b\u0140\u0144\u0147\u014a\u014f" +
                     "\u0152\u0154\u015f\u0164\u0166\u01da\u01e4\u01f3\u01f8\u0200\u0203\u0206" +
                     "\u020c\u0210\u0214\u021a\3\2\3\2";
+    private static final String[] _LITERAL_NAMES = {
+            null, "'import'", "'foreach'", "'in'", "'do'", "'while'", "'if'", "'else'",
+            "'switch'", "'case'", "'continue'", "'break'", "'default'", "'write'",
+            "'writeln'", "'read'", "'main'", "'return'", "'float'", "'int'", "'void'",
+            "'bool'", "'any'", null, null, null, null, null, "'null'", "'('", "')'",
+            "'{'", "'}'", "'['", "']'", "','", "'.'", "'<-'", "'->'", "'>'", "'<'",
+            "'!'", "'~'", "'?'", "':'", "'=='", "'<='", "'>='", "'!='", "'and'", "'or'",
+            "'++'", "'--'", "'+'", "'-'", "'*'", "'/'", "'&'", "'|'", "'^'", "'%'",
+            "'+='", "'-='", "'*='", "'/='", "'&='", "'|='", "'^='", "'%='", "'...'",
+            null, null, "'//'"
+    };
 	private static final String[] _SYMBOLIC_NAMES = {
             null, "IMPORT", "FOREACH", "IN", "DO", "WHILE", "IF", "ELSE", "SWITCH",
             "CASE", "CONTINUE", "BREAK", "DEFAULT", "WRITE", "WRITELINE", "READ",
@@ -250,38 +265,26 @@ public class CustomLexer extends Lexer {
             "SUB_ASSIGN", "MUL_ASSIGN", "DIV_ASSIGN", "AND_ASSIGN", "OR_ASSIGN", "XOR_ASSIGN",
 		"MOD_ASSIGN", "ELLIPSIS", "WS", "COMMENT", "SINGLE_COMMENT", "IDENTIFIER"
 	};
-    private static final String[] _LITERAL_NAMES = {
-            null, "'import'", "'foreach'", "'in'", "'do'", "'while'", "'if'", "'else'",
-            "'switch'", "'case'", "'continue'", "'break'", "'default'", "'write'",
-            "'writeln'", "'read'", "'main'", "'return'", "'float'", "'int'", "'void'",
-            "'bool'", "'any'", null, null, null, null, null, "'null'", "'('", "')'",
-            "'{'", "'}'", "'['", "']'", "','", "'.'", "'<-'", "'->'", "'>'", "'<'",
-            "'!'", "'~'", "'?'", "':'", "'=='", "'<='", "'>='", "'!='", "'and'", "'or'",
-            "'++'", "'--'", "'+'", "'-'", "'*'", "'/'", "'&'", "'|'", "'^'", "'%'",
-            "'+='", "'-='", "'*='", "'/='", "'&='", "'|='", "'^='", "'%='", "'...'",
-            null, null, "'//'"
-    };
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
-	/**
-	 * @deprecated Use {@link #VOCABULARY} instead.
-	 */
-	@Deprecated
-	public static final String[] tokenNames;
-
     static {
-		tokenNames = new String[_SYMBOLIC_NAMES.length];
-		for (int i = 0; i < tokenNames.length; i++) {
-			tokenNames[i] = VOCABULARY.getLiteralName(i);
-			if (tokenNames[i] == null) {
-				tokenNames[i] = VOCABULARY.getSymbolicName(i);
-			}
+        tokenNames = new String[_SYMBOLIC_NAMES.length];
+        for (int i = 0; i < tokenNames.length; i++) {
+            tokenNames[i] = VOCABULARY.getLiteralName(i);
+            if (tokenNames[i] == null) {
+                tokenNames[i] = VOCABULARY.getSymbolicName(i);
+            }
 
-			if (tokenNames[i] == null) {
-				tokenNames[i] = "<INVALID>";
-			}
-		}
-	}
+            if (tokenNames[i] == null) {
+                tokenNames[i] = "<INVALID>";
+            }
+        }
+    }
+
+    public CustomLexer(CharStream input) {
+        super(input);
+        _interp = new LexerATNSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
+    }
 
 	@Override
 	@Deprecated
@@ -293,12 +296,6 @@ public class CustomLexer extends Lexer {
 
 	public Vocabulary getVocabulary() {
 		return VOCABULARY;
-	}
-
-
-	public CustomLexer(CharStream input) {
-		super(input);
-		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override

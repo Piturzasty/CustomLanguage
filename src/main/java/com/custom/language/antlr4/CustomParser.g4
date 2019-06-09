@@ -25,17 +25,11 @@ methodBody
 // STATEMENTS / BLOCKS
 
 block
-    : LBRACE blockStatement* RBRACE
-    ;
-
-blockStatement
-    : localVariableDeclaration
-    | statement
+    : LBRACE (localVariableDeclaration|statement)* RBRACE
     ;
 
 localVariableDeclaration
-    : IDENTIFIER COLON type (ASSIGN_LEFT variableInitializer)?
-    | IDENTIFIER ASSIGN_LEFT variableInitializer
+    : IDENTIFIER COLON type ASSIGN_LEFT variableInitializer
     | variableInitializer ASSIGN_RIGHT IDENTIFIER COLON type
     | type variableDeclarators
     ;
@@ -54,7 +48,7 @@ statement
     ;
 
 switchBlockStatementGroup
-    : switchLabel+ blockStatement+
+    : switchLabel+ (localVariableDeclaration|statement)+
     ;
 
 switchLabel
@@ -113,15 +107,15 @@ primary
 // TYPES
 
 typeOrVoid
-    : type #otherTypes
-    | VOID #voidType
+    : type
+    | VOID
     ;
 
 type
-    : BOOLEAN #boolType
-    | INT #intType
-    | FLOAT #floatType
-    | ANY #anyType
+    : BOOLEAN
+    | INT
+    | FLOAT
+    | ANY
     ;
 
 // PARAMETERS

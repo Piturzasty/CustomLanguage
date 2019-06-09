@@ -224,6 +224,16 @@ public class MainTest {
         }
     }
 
+    @Test
+    public void simpleMethodCallTest() {
+        try {
+            Main.parseFile("/simpleMethodCallExample.txt");
+            assertEquals("Hello my dear\nbar\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
