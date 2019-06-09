@@ -104,15 +104,35 @@ public class MainTest {
         }
     }
 
-//    @Test
-//    public void simpleBooleanOperationsTest() {
-//        try {
-//            Main.parseFile("/simpleBooleanOperationsExample.txt");
-//            assertEquals("true\nfalse\nfalse\ntrue\n", outContent.toString());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Test
+    public void simpleBooleanNotTest() {
+        try {
+            Main.parseFile("/simpleBooleanNotExample.txt");
+            assertEquals("true\nfalse\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleBooleanAndTest() {
+        try {
+            Main.parseFile("/simpleBooleanAndExample.txt");
+            assertEquals("true\nfalse\nfalse\nfalse\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleBooleanOrTest() {
+        try {
+            Main.parseFile("/simpleBooleanOrExample.txt");
+            assertEquals("true\nfalse\ntrue\ntrue\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @After
     public void restoreStreams() {

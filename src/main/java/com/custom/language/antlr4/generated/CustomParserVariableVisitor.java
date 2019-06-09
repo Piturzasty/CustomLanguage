@@ -70,7 +70,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitExpressionNegate(CustomParser.ExpressionNegateContext ctx) {
-        Variable value = this.visit(ctx.expression());
+        Variable value = getVariableIfSavedOrCreateNew(ctx.expression());
         return new Variable(!value.asBoolean());
     }
 
@@ -86,7 +86,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     @Override
     public Variable visitExpressionAssign(CustomParser.ExpressionAssignContext ctx) {
         Variable left = null;
-        if(variables.containsKey(ctx.expression(0).getText())){
+        if (variables.containsKey(ctx.expression(0).getText())) {
             left = variables.get(ctx.expression(0).getText());
         }
         Variable right = getVariableIfSavedOrCreateNew(ctx.expression(1));
@@ -101,16 +101,17 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
             case CustomParser.MUL_ASSIGN:
                 value = new Variable(left != null ? left.asDouble() * right.asDouble() : right.asDouble());
             case CustomParser.DIV_ASSIGN:
-                value = new Variable(left != null ? left.asDouble() / right.asDouble() : 1/right.asDouble());
+                value = new Variable(left != null ? left.asDouble() / right.asDouble() : 1 / right.asDouble());
             case CustomParser.AND_ASSIGN:
-                value = new Variable(left != null ? left.asBoolean() && right.asBoolean(): right.asBoolean());
+                value = new Variable(left != null ? left.asBoolean() && right.asBoolean() : right.asBoolean());
             case CustomParser.OR_ASSIGN:
-                value = new Variable(left != null ? left.asBoolean() || right.asBoolean(): right.asBoolean());
+                value = new Variable(left != null ? left.asBoolean() || right.asBoolean() : right.asBoolean());
             case CustomParser.XOR_ASSIGN:
-                value = new Variable(left != null ? left.asBoolean() ^ right.asBoolean(): right.asBoolean());
+                value = new Variable(left != null ? left.asBoolean() ^ right.asBoolean() : right.asBoolean());
             case CustomParser.MOD_ASSIGN:
-                value = new Variable(left != null ? left.asDouble() % right.asDouble(): right.asDouble());
+                value = new Variable(left != null ? left.asDouble() % right.asDouble() : right.asDouble());
         }
+        variables.put(ctx.expression(0).getText(), value);
         return value;
 
     }
@@ -151,6 +152,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         }
     }
 
+
     @Override
     public Variable visitExpressionPrimary(CustomParser.ExpressionPrimaryContext ctx) {
         return new Variable(this.visit(ctx.primary()));
@@ -172,7 +174,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     }
 
     private Variable getVariableIfSavedOrCreateNew(CustomParser.ExpressionContext expression) {
-        if(variables.containsKey(expression.getText())){
+        if (variables.containsKey(expression.getText())) {
             return variables.get(expression.getText());
         } else {
             return this.visit(expression);
@@ -265,19 +267,16 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitWriteToStd(CustomParser.WriteToStdContext ctx) {
-        for (CustomParser.ExpressionContext expression : ctx.expression()) {
-            Variable var = new Variable(this.visit(expression));
-            if (localVariables.containsKey(expression.getText()) || variables.containsKey(expression.getText())) {
-                if (localVariables.containsKey(expression.getText())){
-                    System.out.print(localVariables.get(expression.getText()));
-                } else {
-                    System.out.print(variables.get(expression.getText()));
-                }
+        Variable var = new Variable(this.visit(ctx.expression()));
+        if (localVariables.containsKey(ctx.expression().getText()) || variables.containsKey(ctx.expression().getText())) {
+            if (localVariables.containsKey(ctx.expression().getText())) {
+                System.out.print(localVariables.get(ctx.expression().getText()));
+            } else {
+                System.out.print(variables.get(ctx.expression().getText()));
             }
-            else {
-                if(var!=null){
-                    System.out.print(var.toString());
-                }
+        } else {
+            if (var.toString() != null) {
+                System.out.print(var.toString());
             }
         }
         return Variable.VOID;
@@ -285,19 +284,16 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitWriteNewLineToStd(CustomParser.WriteNewLineToStdContext ctx) {
-        for (CustomParser.ExpressionContext expression : ctx.expression()) {
-            Variable var = new Variable(this.visit(expression));
-            if (localVariables.containsKey(expression.getText()) || variables.containsKey(expression.getText())) {
-                if (localVariables.containsKey(expression.getText())){
-                    System.out.println(localVariables.get(expression.getText()));
-                } else {
-                    System.out.println(variables.get(expression.getText()));
-                }
+        Variable var = new Variable(this.visit(ctx.expression()));
+        if (localVariables.containsKey(ctx.expression().getText()) || variables.containsKey(ctx.expression().getText())) {
+            if (localVariables.containsKey(ctx.expression().getText())) {
+                System.out.println(localVariables.get(ctx.expression().getText()));
+            } else {
+                System.out.println(variables.get(ctx.expression().getText()));
             }
-            else {
-                if(var.toString()!="null"){
-                    System.out.println(var.toString());
-                }
+        } else {
+            if (var.toString() != null) {
+                System.out.println(var.toString());
             }
         }
         return Variable.VOID;

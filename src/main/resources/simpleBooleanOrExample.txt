@@ -1,0 +1,13 @@
+{
+    main()
+    {
+        var1 <- true
+        var2 <- false
+        writeln var1
+        writeln var2
+        var3 <- var1 or var2
+        writeln var3
+        var4 <- true or false
+        writeln var4
+    }
+}

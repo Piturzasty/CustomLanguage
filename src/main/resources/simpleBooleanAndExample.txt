@@ -2,15 +2,12 @@
     main()
     {
         var1 <- true
-        var2: bool <- !var1
+        var2 <- false
         writeln var1
-
         writeln var2
-
-        var3 <- var1 && var2
+        var3 <- var1 and var2
         writeln var3
-
-        var4 <- var1 || var2
+        var4 <- true and false
         writeln var4
     }
 }

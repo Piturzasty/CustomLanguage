@@ -47,8 +47,8 @@ statement
     | DO statement WHILE parExpression #doWhileControl
     | SWITCH parExpression LBRACE switchBlockStatementGroup* switchLabel* RBRACE #switchControl
     | RETURN expression? #returnStatement
-    | WRITE expression* #writeToStd
-    | WRITELINE expression* #writeNewLineToStd
+    | WRITE expression #writeToStd
+    | WRITELINE expression #writeNewLineToStd
     | READ IDENTIFIER #readFromStd
     | SINGLE_COMMENT literal #comment
     ;
@@ -105,7 +105,7 @@ expression
     | expression bop=AND expression #expressionAnd
     | expression bop=OR expression #expressionOr
     | expression bop=QUESTION expression COLON expression #expressionTernaryConditional
-    | expression bop=(ASSIGN_LEFT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | MOD_ASSIGN ) expression #expressionAssign
+    | expression bop=(ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | MOD_ASSIGN ) expression #expressionAssign
     ;
 
 primary

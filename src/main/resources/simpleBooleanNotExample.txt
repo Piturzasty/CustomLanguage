@@ -1,0 +1,10 @@
+{
+    main()
+    {
+        var1 <- true
+        var2 <- ! var1
+        writeln var1
+
+        writeln var2
+    }
+}
