@@ -11,6 +11,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     private static final double SMALL_VALUE = 0.00000000001;
     private Map<String, Variable> variables = new HashMap<>();
     private Map<String, Variable> localVariables = new HashMap<>();
+    private Map<String, CustomParser.MethodBodyContext> methods = new HashMap<String, CustomParser.MethodBodyContext>();
 
     @Override
     public Variable visitDecimalLiteral(CustomParser.DecimalLiteralContext ctx) {
@@ -215,7 +216,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitExpressionMethodCall(CustomParser.ExpressionMethodCallContext ctx) {
-        return super.visitExpressionMethodCall(ctx);
+        return this.visit(methods.get(ctx.IDENTIFIER().getText()));
     }
 
     @Override
@@ -376,4 +377,11 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         }
         return Variable.VOID;
     }
+
+    @Override
+    public Variable visitMethodDeclaration(CustomParser.MethodDeclarationContext ctx) {
+        methods.put(ctx.IDENTIFIER().getText(), ctx.methodBody());
+        return Variable.VOID;
+    }
+
 }

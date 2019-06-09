@@ -113,15 +113,15 @@ primary
 // TYPES
 
 typeOrVoid
-    : type #otherTypes
-    | VOID #voidType
+    : type
+    | VOID
     ;
 
 type
-    : BOOLEAN #boolType
-    | INT #intType
-    | FLOAT #floatType
-    | ANY #anyType
+    : BOOLEAN
+    | INT
+    | FLOAT
+    | ANY
     ;
 
 // PARAMETERS
