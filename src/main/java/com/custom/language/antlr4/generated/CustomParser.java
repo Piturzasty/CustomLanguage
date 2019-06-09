@@ -180,6 +180,17 @@ public class CustomParser extends Parser {
 		"SUB_ASSIGN", "MUL_ASSIGN", "DIV_ASSIGN", "AND_ASSIGN", "OR_ASSIGN", "XOR_ASSIGN", 
 		"MOD_ASSIGN", "ELLIPSIS", "WS", "COMMENT", "SINGLE_COMMENT", "IDENTIFIER"
 	};
+	private static final String[] _LITERAL_NAMES = {
+			null, "'import'", "'foreach'", "'in'", "'do'", "'while'", "'if'", "'else'",
+			"'switch'", "'case'", "'continue'", "'break'", "'default'", "'write'",
+			"'writeln'", "'read'", "'main'", "'return'", "'float'", "'int'", "'void'",
+			"'bool'", "'any'", null, null, null, null, null, "'null'", "'('", "')'",
+			"'{'", "'}'", "'['", "']'", "','", "'.'", "'<-'", "'->'", "'>'", "'<'",
+			"'!'", "'~'", "'?'", "':'", "'=='", "'<='", "'>='", "'!='", "'and'", "'or'",
+			"'++'", "'--'", "'+'", "'-'", "'*'", "'/'", "'&'", "'|'", "'^'", "'%'",
+			"'+='", "'-='", "'*='", "'/='", "'&='", "'|='", "'^='", "'%='", "'...'",
+			null, null, "'//'"
+	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
 	/**
@@ -187,6 +198,7 @@ public class CustomParser extends Parser {
 	 */
 	@Deprecated
 	public static final String[] tokenNames;
+
 	static {
 		tokenNames = new String[_SYMBOLIC_NAMES.length];
 		for (int i = 0; i < tokenNames.length; i++) {
@@ -224,7 +236,6 @@ public class CustomParser extends Parser {
 
 	@Override
 	public ATN getATN() { return _ATN; }
-
 	public CustomParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
@@ -252,19 +263,8 @@ public class CustomParser extends Parser {
 			if ( visitor instanceof CustomParserVisitor ) return ((CustomParserVisitor<? extends T>)visitor).visitCompilationUnit(this);
 			else return visitor.visitChildren(this);
 		}
-	}
 
-    private static final String[] _LITERAL_NAMES = {
-            null, "'import'", "'foreach'", "'in'", "'do'", "'while'", "'if'", "'else'",
-            "'switch'", "'case'", "'continue'", "'break'", "'default'", "'write'",
-            "'writeln'", "'read'", "'main'", "'return'", "'float'", "'int'", "'void'",
-            "'bool'", "'any'", null, null, null, null, null, "'null'", "'('", "')'",
-            "'{'", "'}'", "'['", "']'", "','", "'.'", "'<-'", "'->'", "'>'", "'<'",
-            "'!'", "'~'", "'?'", "':'", "'=='", "'<='", "'>='", "'!='", "'and'", "'or'",
-            "'++'", "'--'", "'+'", "'-'", "'*'", "'/'", "'&'", "'|'", "'^'", "'%'",
-            "'+='", "'-='", "'*='", "'/='", "'&='", "'|='", "'^='", "'%='", "'...'",
-            null, null, "'//'"
-    };
+	}
 
 	public static class FileContentContext extends ParserRuleContext {
 		public MainDeclarationContext mainDeclaration() {
