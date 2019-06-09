@@ -49,7 +49,6 @@ STRING_LITERAL:     '"' (~["\\\r\n] | EscapeSequence)* '"';
 NULL_LITERAL:       'null';
 
 // Separators
-
 LPAREN:             '(';
 RPAREN:             ')';
 LBRACE:             '{';

@@ -47,12 +47,6 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlock(CustomParser.BlockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CustomParser#blockStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBlockStatement(CustomParser.BlockStatementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link CustomParser#localVariableDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -268,47 +262,17 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrimary(CustomParser.PrimaryContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code otherTypes}
-	 * labeled alternative in {@link CustomParser#typeOrVoid}.
+     * Visit a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOtherTypes(CustomParser.OtherTypesContext ctx);
+    T visitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code voidType}
-	 * labeled alternative in {@link CustomParser#typeOrVoid}.
+     * Visit a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVoidType(CustomParser.VoidTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code boolType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBoolType(CustomParser.BoolTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code intType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIntType(CustomParser.IntTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code floatType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFloatType(CustomParser.FloatTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code anyType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAnyType(CustomParser.AnyTypeContext ctx);
+    T visitType(CustomParser.TypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CustomParser#formalParameters}.
 	 * @param ctx the parse tree

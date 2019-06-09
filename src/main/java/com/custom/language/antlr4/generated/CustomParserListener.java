@@ -68,16 +68,6 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitBlock(CustomParser.BlockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#blockStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterBlockStatement(CustomParser.BlockStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CustomParser#blockStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitBlockStatement(CustomParser.BlockStatementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CustomParser#localVariableDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -444,77 +434,25 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitPrimary(CustomParser.PrimaryContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code otherTypes}
-	 * labeled alternative in {@link CustomParser#typeOrVoid}.
+     * Enter a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-	void enterOtherTypes(CustomParser.OtherTypesContext ctx);
+    void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code otherTypes}
-	 * labeled alternative in {@link CustomParser#typeOrVoid}.
+     * Exit a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-	void exitOtherTypes(CustomParser.OtherTypesContext ctx);
+    void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code voidType}
-	 * labeled alternative in {@link CustomParser#typeOrVoid}.
+     * Enter a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void enterVoidType(CustomParser.VoidTypeContext ctx);
+    void enterType(CustomParser.TypeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code voidType}
-	 * labeled alternative in {@link CustomParser#typeOrVoid}.
+     * Exit a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void exitVoidType(CustomParser.VoidTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code boolType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterBoolType(CustomParser.BoolTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code boolType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitBoolType(CustomParser.BoolTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code intType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterIntType(CustomParser.IntTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code intType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitIntType(CustomParser.IntTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code floatType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterFloatType(CustomParser.FloatTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code floatType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitFloatType(CustomParser.FloatTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code anyType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterAnyType(CustomParser.AnyTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code anyType}
-	 * labeled alternative in {@link CustomParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitAnyType(CustomParser.AnyTypeContext ctx);
+    void exitType(CustomParser.TypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#formalParameters}.
 	 * @param ctx the parse tree
