@@ -184,30 +184,6 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBreakStatement(CustomParser.BreakStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBreakStatement(CustomParser.BreakStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterContinueStatement(CustomParser.ContinueStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitContinueStatement(CustomParser.ContinueStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterWriteToStd(CustomParser.WriteToStdContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -311,18 +287,6 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariableDeclarator(CustomParser.VariableDeclaratorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterVariableDeclaratorId(CustomParser.VariableDeclaratorIdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVariableDeclaratorId(CustomParser.VariableDeclaratorIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -472,18 +436,6 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpressionCast(CustomParser.ExpressionCastContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExpressionCast(CustomParser.ExpressionCastContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExpressionOr(CustomParser.ExpressionOrContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -544,49 +496,73 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodCall(CustomParser.MethodCallContext ctx) { }
+	@Override public void enterOtherTypes(CustomParser.OtherTypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodCall(CustomParser.MethodCallContext ctx) { }
+	@Override public void exitOtherTypes(CustomParser.OtherTypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx) { }
+	@Override public void enterVoidType(CustomParser.VoidTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx) { }
+	@Override public void exitVoidType(CustomParser.VoidTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType(CustomParser.TypeContext ctx) { }
+	@Override public void enterBoolType(CustomParser.BoolTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType(CustomParser.TypeContext ctx) { }
+	@Override public void exitBoolType(CustomParser.BoolTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrimitiveType(CustomParser.PrimitiveTypeContext ctx) { }
+	@Override public void enterIntType(CustomParser.IntTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrimitiveType(CustomParser.PrimitiveTypeContext ctx) { }
+	@Override public void exitIntType(CustomParser.IntTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFloatType(CustomParser.FloatTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFloatType(CustomParser.FloatTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAnyType(CustomParser.AnyTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAnyType(CustomParser.AnyTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -628,25 +604,25 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLiteral(CustomParser.LiteralContext ctx) { }
+	@Override public void enterDecimalLiteral(CustomParser.DecimalLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLiteral(CustomParser.LiteralContext ctx) { }
+	@Override public void exitDecimalLiteral(CustomParser.DecimalLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIntegerLiteral(CustomParser.IntegerLiteralContext ctx) { }
+	@Override public void enterBinaryLiteral(CustomParser.BinaryLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIntegerLiteral(CustomParser.IntegerLiteralContext ctx) { }
+	@Override public void exitBinaryLiteral(CustomParser.BinaryLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -659,6 +635,42 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFloatLiteral(CustomParser.FloatLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStringLiteral(CustomParser.StringLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStringLiteral(CustomParser.StringLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolLiteral(CustomParser.BoolLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolLiteral(CustomParser.BoolLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNullLiteral(CustomParser.NullLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNullLiteral(CustomParser.NullLiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -34,9 +34,9 @@ blockStatement
     ;
 
 localVariableDeclaration
-    : variableDeclaratorId COLON type (ASSIGN_LEFT variableInitializer)?
-    | variableDeclaratorId ASSIGN_LEFT variableInitializer
-    | variableInitializer ASSIGN_RIGHT variableDeclaratorId COLON type
+    : IDENTIFIER COLON type (ASSIGN_LEFT variableInitializer)?
+    | IDENTIFIER ASSIGN_LEFT variableInitializer
+    | variableInitializer ASSIGN_RIGHT IDENTIFIER COLON type
     | type variableDeclarators
     ;
 
@@ -47,10 +47,8 @@ statement
     | DO statement WHILE parExpression #doWhileControl
     | SWITCH parExpression LBRACE switchBlockStatementGroup* switchLabel* RBRACE #switchControl
     | RETURN expression? #returnStatement
-    | BREAK IDENTIFIER? #breakStatement
-    | CONTINUE IDENTIFIER? #continueStatement
-    | WRITE (expression | IDENTIFIER)* (expression | IDENTIFIER)+ #writeToStd
-    | WRITELINE (expression | IDENTIFIER)* (expression | IDENTIFIER)+ #writeNewLineToStd
+    | WRITE expression* #writeToStd
+    | WRITELINE expression* #writeNewLineToStd
     | READ IDENTIFIER #readFromStd
     | SINGLE_COMMENT literal #comment
     ;
@@ -72,16 +70,12 @@ switchLabel
 
 variableDeclarators
     : variableDeclarator
-    | variableDeclaratorId (COMMA variableDeclaratorId)* (ASSIGN_LEFT variableInitializer)?
+    | IDENTIFIER (COMMA IDENTIFIER)* (ASSIGN_LEFT variableInitializer)?
     ;
 
 variableDeclarator
-    : variableDeclaratorId (ASSIGN_LEFT variableInitializer)?
-    | (variableInitializer ASSIGN_RIGHT ) variableDeclaratorId
-    ;
-
-variableDeclaratorId
-    : IDENTIFIER
+    : IDENTIFIER (ASSIGN_LEFT variableInitializer)?
+    | (variableInitializer ASSIGN_RIGHT ) IDENTIFIER
     ;
 
 variableInitializer
@@ -100,8 +94,7 @@ expressionList
 
 expression
     : primary #expressionPrimary
-    | methodCall #expressionMethodCall
-    | LPAREN type RPAREN expression #expressionCast
+    | IDENTIFIER LPAREN expressionList? RPAREN #expressionMethodCall
     | expression postfix=(INC | DEC) #expressionIncDec
     | prefix=(TILDE | BANG) expression #expressionNegate
     | expression bop=(MUL | DIV | MOD) expression #expressionMulDivModExpression
@@ -112,7 +105,7 @@ expression
     | expression bop=AND expression #expressionAnd
     | expression bop=OR expression #expressionOr
     | expression bop=QUESTION expression COLON expression #expressionTernaryConditional
-    | expression bop=(ASSIGN_LEFT | ASSIGN_RIGHT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | RSHIFT_ASSIGN | URSHIFT_ASSIGN | LSHIFT_ASSIGN | MOD_ASSIGN ) expression #expressionAssign
+    | expression bop=(ASSIGN_LEFT | ADD_ASSIGN | SUB_ASSIGN | MUL_ASSIGN | DIV_ASSIGN | AND_ASSIGN | OR_ASSIGN | XOR_ASSIGN | MOD_ASSIGN ) expression #expressionAssign
     ;
 
 primary
@@ -121,26 +114,18 @@ primary
     | IDENTIFIER
     ;
 
-methodCall
-    : IDENTIFIER LPAREN expressionList? RPAREN
-    ;
-
 // TYPES
 
 typeOrVoid
-    : type
-    | VOID
+    : type #otherTypes
+    | VOID #voidType
     ;
 
 type
-    : primitiveType
-    ;
-
-primitiveType
-    : BOOLEAN
-    | INT
-    | FLOAT
-    | ANY
+    : BOOLEAN #boolType
+    | INT #intType
+    | FLOAT #floatType
+    | ANY #anyType
     ;
 
 // PARAMETERS
@@ -154,24 +139,17 @@ formalParameterList
     ;
 
 formalParameter
-    : type variableDeclaratorId
+    : type IDENTIFIER
     ;
 
 // LITERALS
 
 literal
-    : integerLiteral
-    | floatLiteral
-    | STRING_LITERAL
-    | BOOL_LITERAL
-    | NULL_LITERAL
+    : DECIMAL_LITERAL #decimalLiteral
+    | BINARY_LITERAL #binaryLiteral
+    | FLOAT_LITERAL #floatLiteral
+    | STRING_LITERAL #stringLiteral
+    | BOOL_LITERAL #boolLiteral
+    | NULL_LITERAL #nullLiteral
     ;
 
-integerLiteral
-    : DECIMAL_LITERAL
-    | BINARY_LITERAL
-    ;
-
-floatLiteral
-    : FLOAT_LITERAL
-    ;

@@ -73,10 +73,10 @@ EQUAL:              '==';
 LE:                 '<=';
 GE:                 '>=';
 NOTEQUAL:           '!=';
-AND:                '&&';
-OR:                 '||';
-INC:                '++';
-DEC:                '--';
+AND:                'and';
+OR:                 'or';
+INC:                'inc';
+DEC:                'dec';
 ADD:                '+';
 SUB:                '-';
 MUL:                '*';
@@ -94,9 +94,6 @@ AND_ASSIGN:         '&=';
 OR_ASSIGN:          '|=';
 XOR_ASSIGN:         '^=';
 MOD_ASSIGN:         '%=';
-LSHIFT_ASSIGN:      '<<=';
-RSHIFT_ASSIGN:      '>>=';
-URSHIFT_ASSIGN:     '>>>=';
 
 ELLIPSIS:           '...';
 

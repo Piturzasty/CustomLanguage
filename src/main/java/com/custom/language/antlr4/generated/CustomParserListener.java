@@ -89,145 +89,121 @@ public interface CustomParserListener extends ParseTreeListener {
 	void exitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ifElseStatement}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterIfElseStatement(CustomParser.IfElseStatementContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code ifElseStatement}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitIfElseStatement(CustomParser.IfElseStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code forControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterForControl(CustomParser.ForControlContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code forControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitForControl(CustomParser.ForControlContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code whileControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterWhileControl(CustomParser.WhileControlContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code whileControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitWhileControl(CustomParser.WhileControlContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code doWhileControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterDoWhileControl(CustomParser.DoWhileControlContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code doWhileControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitDoWhileControl(CustomParser.DoWhileControlContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code switchControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterSwitchControl(CustomParser.SwitchControlContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code switchControl}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitSwitchControl(CustomParser.SwitchControlContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code returnStatement}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterReturnStatement(CustomParser.ReturnStatementContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code returnStatement}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitReturnStatement(CustomParser.ReturnStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code breakStatement}
-	 * labeled alternative in.
-	 * @param ctx the parse tree
-	 */
-	void enterBreakStatement(CustomParser.BreakStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code breakStatement}
-	 * labeled alternative in.
-	 * @param ctx the parse tree
-	 */
-	void exitBreakStatement(CustomParser.BreakStatementContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code continueStatement}
-	 * labeled alternative in.
-	 * @param ctx the parse tree
-	 */
-	void enterContinueStatement(CustomParser.ContinueStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code continueStatement}
-	 * labeled alternative in.
-	 * @param ctx the parse tree
-	 */
-	void exitContinueStatement(CustomParser.ContinueStatementContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code writeToStd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterWriteToStd(CustomParser.WriteToStdContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code writeToStd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitWriteToStd(CustomParser.WriteToStdContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code writeNewLineToStd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterWriteNewLineToStd(CustomParser.WriteNewLineToStdContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code writeNewLineToStd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitWriteNewLineToStd(CustomParser.WriteNewLineToStdContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code readFromStd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterReadFromStd(CustomParser.ReadFromStdContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code readFromStd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitReadFromStd(CustomParser.ReadFromStdContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code comment}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void enterComment(CustomParser.CommentContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code comment}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree
 	 */
 	void exitComment(CustomParser.CommentContext ctx);
@@ -282,16 +258,6 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitVariableDeclarator(CustomParser.VariableDeclaratorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#variableDeclaratorId}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableDeclaratorId(CustomParser.VariableDeclaratorIdContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CustomParser#variableDeclaratorId}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableDeclaratorId(CustomParser.VariableDeclaratorIdContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CustomParser#variableInitializer}.
 	 * @param ctx the parse tree
 	 */
@@ -323,169 +289,157 @@ public interface CustomParserListener extends ParseTreeListener {
 	void exitExpressionList(CustomParser.ExpressionListContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionCompare}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionCompare(CustomParser.ExpressionCompareContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionCompare}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionCompare(CustomParser.ExpressionCompareContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionNegate}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionNegate(CustomParser.ExpressionNegateContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionNegate}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionNegate(CustomParser.ExpressionNegateContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionTernaryConditional}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionTernaryConditional(CustomParser.ExpressionTernaryConditionalContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionTernaryConditional}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionTernaryConditional(CustomParser.ExpressionTernaryConditionalContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionAssign}
-	 * labeled alternative in {@link CustomParser#statement}.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionAssign(CustomParser.ExpressionAssignContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionAssign}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionAssign(CustomParser.ExpressionAssignContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionMulDivModExpression}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionMulDivModExpression(CustomParser.ExpressionMulDivModExpressionContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionMulDivModExpression}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionMulDivModExpression(CustomParser.ExpressionMulDivModExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionEqual}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionEqual(CustomParser.ExpressionEqualContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionEqual}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionEqual(CustomParser.ExpressionEqualContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionPrimary}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionPrimary(CustomParser.ExpressionPrimaryContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionPrimary}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionPrimary(CustomParser.ExpressionPrimaryContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionAddSubExpression}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionAddSubExpression(CustomParser.ExpressionAddSubExpressionContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionAddSubExpression}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionAddSubExpression(CustomParser.ExpressionAddSubExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionAnd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionAnd(CustomParser.ExpressionAndContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionAnd}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionAnd(CustomParser.ExpressionAndContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code expressionCast}
-	 * labeled alternative in.
-	 * @param ctx the parse tree
-	 */
-	void enterExpressionCast(CustomParser.ExpressionCastContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code expressionCast}
-	 * labeled alternative in.
-	 * @param ctx the parse tree
-	 */
-	void exitExpressionCast(CustomParser.ExpressionCastContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code expressionOr}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionOr(CustomParser.ExpressionOrContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionOr}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionOr(CustomParser.ExpressionOrContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionIncDec}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionIncDec(CustomParser.ExpressionIncDecContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionIncDec}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionIncDec(CustomParser.ExpressionIncDecContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionMethodCall}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionMethodCall(CustomParser.ExpressionMethodCallContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionMethodCall}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionMethodCall(CustomParser.ExpressionMethodCallContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionCarret}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void enterExpressionCarret(CustomParser.ExpressionCarretContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code expressionCarret}
-	 * labeled alternative in.
+	 * labeled alternative in {@link CustomParser#expression}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionCarret(CustomParser.ExpressionCarretContext ctx);
@@ -500,45 +454,77 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitPrimary(CustomParser.PrimaryContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#methodCall}.
+	 * Enter a parse tree produced by the {@code otherTypes}
+	 * labeled alternative in {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-	void enterMethodCall(CustomParser.MethodCallContext ctx);
+	void enterOtherTypes(CustomParser.OtherTypesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CustomParser#methodCall}.
+	 * Exit a parse tree produced by the {@code otherTypes}
+	 * labeled alternative in {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-	void exitMethodCall(CustomParser.MethodCallContext ctx);
+	void exitOtherTypes(CustomParser.OtherTypesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#typeOrVoid}.
+	 * Enter a parse tree produced by the {@code voidType}
+	 * labeled alternative in {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-	void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
+	void enterVoidType(CustomParser.VoidTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CustomParser#typeOrVoid}.
+	 * Exit a parse tree produced by the {@code voidType}
+	 * labeled alternative in {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
-	void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
+	void exitVoidType(CustomParser.VoidTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#type}.
+	 * Enter a parse tree produced by the {@code boolType}
+	 * labeled alternative in {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void enterType(CustomParser.TypeContext ctx);
+	void enterBoolType(CustomParser.BoolTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CustomParser#type}.
+	 * Exit a parse tree produced by the {@code boolType}
+	 * labeled alternative in {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void exitType(CustomParser.TypeContext ctx);
+	void exitBoolType(CustomParser.BoolTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#primitiveType}.
+	 * Enter a parse tree produced by the {@code intType}
+	 * labeled alternative in {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrimitiveType(CustomParser.PrimitiveTypeContext ctx);
+	void enterIntType(CustomParser.IntTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CustomParser#primitiveType}.
+	 * Exit a parse tree produced by the {@code intType}
+	 * labeled alternative in {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrimitiveType(CustomParser.PrimitiveTypeContext ctx);
+	void exitIntType(CustomParser.IntTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code floatType}
+	 * labeled alternative in {@link CustomParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatType(CustomParser.FloatTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code floatType}
+	 * labeled alternative in {@link CustomParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatType(CustomParser.FloatTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code anyType}
+	 * labeled alternative in {@link CustomParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnyType(CustomParser.AnyTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code anyType}
+	 * labeled alternative in {@link CustomParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnyType(CustomParser.AnyTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#formalParameters}.
 	 * @param ctx the parse tree
@@ -570,33 +556,75 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitFormalParameter(CustomParser.FormalParameterContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#literal}.
+	 * Enter a parse tree produced by the {@code decimalLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterLiteral(CustomParser.LiteralContext ctx);
+	void enterDecimalLiteral(CustomParser.DecimalLiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CustomParser#literal}.
+	 * Exit a parse tree produced by the {@code decimalLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitLiteral(CustomParser.LiteralContext ctx);
+	void exitDecimalLiteral(CustomParser.DecimalLiteralContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#integerLiteral}.
+	 * Enter a parse tree produced by the {@code binaryLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterIntegerLiteral(CustomParser.IntegerLiteralContext ctx);
+	void enterBinaryLiteral(CustomParser.BinaryLiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CustomParser#integerLiteral}.
+	 * Exit a parse tree produced by the {@code binaryLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitIntegerLiteral(CustomParser.IntegerLiteralContext ctx);
+	void exitBinaryLiteral(CustomParser.BinaryLiteralContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CustomParser#floatLiteral}.
+	 * Enter a parse tree produced by the {@code floatLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
 	 * @param ctx the parse tree
 	 */
 	void enterFloatLiteral(CustomParser.FloatLiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CustomParser#floatLiteral}.
+	 * Exit a parse tree produced by the {@code floatLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
 	 * @param ctx the parse tree
 	 */
 	void exitFloatLiteral(CustomParser.FloatLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code stringLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLiteral(CustomParser.StringLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code stringLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLiteral(CustomParser.StringLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code boolLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolLiteral(CustomParser.BoolLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolLiteral(CustomParser.BoolLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code nullLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterNullLiteral(CustomParser.NullLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code nullLiteral}
+	 * labeled alternative in {@link CustomParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitNullLiteral(CustomParser.NullLiteralContext ctx);
 }

@@ -1,0 +1,14 @@
+{
+    main()
+    {
+        var1 <- 8
+        var2 <- 4
+        writeln var1 / var2
+
+        var3 <- var1 / var2
+        writeln var3
+
+        var4 <- var1 / 3
+        writeln var4
+    }
+}

@@ -1,0 +1,8 @@
+{
+    main()
+    {
+        var1 <- "Hello my dear "
+        var2 <- Fren
+        write var1 var2 var3
+    }
+}

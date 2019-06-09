@@ -2,7 +2,7 @@
     main()
     {
         var1 <- "Hello my dear "
-        var2 <- Fren
+        var2 <- "Fren"
         write var1
         write var2
     }

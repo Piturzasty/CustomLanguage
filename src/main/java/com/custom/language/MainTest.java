@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 public class MainTest {
 
@@ -56,35 +55,64 @@ public class MainTest {
     }
 
     @Test
-    public void castTest() {
+    public void simpleArithmeticAddTest() {
         try {
-            Main.parseFile("/castExample.txt");
-            assertEquals("Hello my dear\n8\n", outContent.toString());
-            assertThrows(ClassCastException.class,()->Main.parseFile("/castExampleCastException.txt"));
+            Main.parseFile("/simpleArithmeticAddExample.txt");
+            assertEquals("13.0\n13.0\n", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void simpleArithmeticTest() {
+    public void simpleArithmeticSubTest() {
         try {
-            Main.parseFile("/simpleArithmeticExample.txt");
-            assertEquals("13\n13\n5\n2\n3\n", outContent.toString());
+            Main.parseFile("/simpleArithmeticSubExample.txt");
+            assertEquals("3.0\n5.0\n", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void simpleBooleanOperationsTest() {
+    public void simpleArithmeticDivTest() {
         try {
-            Main.parseFile("/simpleBooleanOperationsExample.txt");
-            assertEquals("true\nfalse\nfalse\ntrue\n", outContent.toString());
+            Main.parseFile("/simpleArithmeticDivExample.txt");
+            assertEquals("2.0\n2.0\n2.6666666666666665\n", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void simpleArithmeticMulTest() {
+        try {
+            Main.parseFile("/simpleArithmeticMulExample.txt");
+            assertEquals("40.0\n40.0\n24.0\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void simpleArithmeticModTest() {
+        try {
+            Main.parseFile("/simpleArithmeticModExample.txt");
+            assertEquals("3.0\n3.0\n2.0\n", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    @Test
+//    public void simpleBooleanOperationsTest() {
+//        try {
+//            Main.parseFile("/simpleBooleanOperationsExample.txt");
+//            assertEquals("true\nfalse\nfalse\ntrue\n", outContent.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @After
     public void restoreStreams() {

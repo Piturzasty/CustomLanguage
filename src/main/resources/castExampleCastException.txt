@@ -1,9 +1,0 @@
-{
-    main()
-    {
-        var1: int <- "Hello my dear"
-        var2: float <- 8
-        writeln var1
-        writeln var2
-    }
-}
