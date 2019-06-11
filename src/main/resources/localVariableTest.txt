@@ -1,0 +1,29 @@
+{
+    void foo()
+    {
+        test <- 2
+
+        writeln test2
+    }
+
+    main()
+    {
+        test <- 1
+
+        if ( test == 1 )
+        {
+            writeln "Passed"
+        }
+
+        foo()
+
+        if ( test == 1 )
+        {
+            writeln "Passed"
+        }
+
+        test2 <- 10
+
+        foo()
+    }
+}

@@ -13,14 +13,14 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         Variable returnValue = null;
         boolean isDone = false;
 
+        Map<String, Variable> localVariables = new HashMap<>();
+
         Method(CustomParser.MethodBodyContext methodContext) {
             this.methodContext = methodContext;
         }
     }
 
     private static final double SMALL_VALUE = 0.00000000001;
-    private Map<String, Variable> variables = new HashMap<>();
-    private Map<String, Variable> localVariables = new HashMap<>();
 
     private Map<String, Method> methods = new HashMap<>();
     private Method currentMethod = null;
@@ -99,8 +99,8 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     @Override
     public Variable visitExpressionAssign(CustomParser.ExpressionAssignContext ctx) {
         Variable left = null;
-        if (variables.containsKey(ctx.expression(0).getText())) {
-            left = variables.get(ctx.expression(0).getText());
+        if (currentMethod.localVariables.containsKey(ctx.expression(0).getText())) {
+            left = currentMethod.localVariables.get(ctx.expression(0).getText());
         }
         Variable right = getVariableIfSavedOrCreateNew(ctx.expression(1));
         Variable value = null;
@@ -124,7 +124,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
             case CustomParser.MOD_ASSIGN:
                 value = new Variable(left != null ? left.asDouble() % right.asDouble() : right.asDouble());
         }
-        variables.put(ctx.expression(0).getText(), value);
+        currentMethod.localVariables.put(ctx.expression(0).getText(), value);
         return value;
 
     }
@@ -192,8 +192,8 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     }
 
     private Variable getVariableIfSavedOrCreateNew(CustomParser.ExpressionContext expression) {
-        if (variables.containsKey(expression.getText())) {
-            return variables.get(expression.getText());
+        if (currentMethod.localVariables.containsKey(expression.getText())) {
+            return currentMethod.localVariables.get(expression.getText());
         } else {
             return this.visit(expression);
         }
@@ -220,11 +220,11 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         switch (ctx.postfix.getType()) {
             case CustomParser.INC:
                 value = new Variable(value.asDouble() + 1);
-                variables.put(ctx.expression().getText(), value);
+                currentMethod.localVariables.put(ctx.expression().getText(), value);
                 return value;
             case CustomParser.DEC:
                 value = new Variable(value.asDouble() - 1);
-                variables.put(ctx.expression().getText(), value);
+                currentMethod.localVariables.put(ctx.expression().getText(), value);
                 return value;
             default:
                 throw new RuntimeException("unknown operator: " + CustomParser.tokenNames[ctx.postfix.getType()]);
@@ -263,7 +263,6 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitFormalParameter(CustomParser.FormalParameterContext ctx) {
-        localVariables.put(ctx.IDENTIFIER().getText(), variables.get(ctx.IDENTIFIER().getText()));
         return super.visitFormalParameter(ctx);
     }
 
@@ -274,7 +273,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         } else {
             Variable variable = this.visit(ctx.variableInitializer());
             for (TerminalNode identifier : ctx.IDENTIFIER()) {
-                variables.put(identifier.getText(), variable);
+                currentMethod.localVariables.put(identifier.getText(), variable);
             }
             return variable;
         }
@@ -284,7 +283,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     public Variable visitVariableDeclarator(CustomParser.VariableDeclaratorContext ctx) {
         String id = ctx.IDENTIFIER().getText();
         Variable variable = this.visit(ctx.variableInitializer());
-        variables.put(id, variable);
+        currentMethod.localVariables.put(id, variable);
         return variable;
     }
 
@@ -296,12 +295,8 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     @Override
     public Variable visitWriteToStd(CustomParser.WriteToStdContext ctx) {
         Variable var = new Variable(this.visit(ctx.expression()));
-        if (localVariables.containsKey(ctx.expression().getText()) || variables.containsKey(ctx.expression().getText())) {
-            if (localVariables.containsKey(ctx.expression().getText())) {
-                System.out.print(localVariables.get(ctx.expression().getText()));
-            } else {
-                System.out.print(variables.get(ctx.expression().getText()));
-            }
+        if (currentMethod.localVariables.containsKey(ctx.expression().getText())) {
+            System.out.print(currentMethod.localVariables.get(ctx.expression().getText()));
         } else {
             if (var.toString() != null) {
                 System.out.print(var.toString());
@@ -313,12 +308,8 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     @Override
     public Variable visitWriteNewLineToStd(CustomParser.WriteNewLineToStdContext ctx) {
         Variable var = new Variable(this.visit(ctx.expression()));
-        if (localVariables.containsKey(ctx.expression().getText()) || variables.containsKey(ctx.expression().getText())) {
-            if (localVariables.containsKey(ctx.expression().getText())) {
-                System.out.println(localVariables.get(ctx.expression().getText()));
-            } else {
-                System.out.println(variables.get(ctx.expression().getText()));
-            }
+        if (currentMethod.localVariables.containsKey(ctx.expression().getText())) {
+            System.out.println(currentMethod.localVariables.get(ctx.expression().getText()));
         } else {
             if (var.toString() != null) {
                 System.out.println(var.toString());
@@ -330,7 +321,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     @Override
     public Variable visitReadFromStd(CustomParser.ReadFromStdContext ctx) {
         try {
-            variables.put(ctx.IDENTIFIER().getText(), new Variable(System.in.read()));
+            currentMethod.localVariables.put(ctx.IDENTIFIER().getText(), new Variable(System.in.read()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -354,7 +345,7 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         if (ctx.IDENTIFIER() != null) {
             String id = ctx.IDENTIFIER().getText();
             Variable variable = this.visit(ctx.variableInitializer());
-            variables.put(id, variable);
+            currentMethod.localVariables.put(id, variable);
             return variable;
         } else {
             return Variable.VOID;

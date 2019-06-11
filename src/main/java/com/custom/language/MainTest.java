@@ -280,6 +280,25 @@ public class MainTest {
         }
     }
 
+    @Test
+    public void localVariableTest() {
+        try {
+            Main.parseFile("/localVariableTest.txt");
+
+            Function<Integer, String> passed = i -> "Passed" + System.lineSeparator();
+            Function<Integer, String> noVar = i -> "null" + System.lineSeparator();
+
+            String expectedResult = buildExpectedResult(passed, 1);
+            expectedResult += buildExpectedResult(noVar, 1);
+            expectedResult += buildExpectedResult(passed, 1);
+            expectedResult += buildExpectedResult(noVar, 1);
+
+            assertEquals(expectedResult, outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
