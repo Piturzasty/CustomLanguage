@@ -3,8 +3,8 @@ package com.custom.language;
 public class Variable {
     public static Variable VOID = new Variable(new Object());
 
-    final Object value;
-    final boolean softEquals;
+    private final Object value;
+    private final boolean softEquals;
 
     public Variable(Object value) {
         this.value = value;

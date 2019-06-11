@@ -1,6 +1,7 @@
 package com.custom.language;
 
 
+import org.codehaus.plexus.util.StringInputStream;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +9,6 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Optional;
 import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
@@ -31,6 +31,17 @@ public class MainTest {
         try {
             Main.parseFile("/printSimpleStringExample.txt");
             assertEquals("Hello my dear", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void readPrintTest() {
+        try {
+            System.setIn(new StringInputStream("ECHOOO"));
+            Main.parseFile("/simpleReadWriteExample.txt");
+            assertEquals("ECHOOO", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

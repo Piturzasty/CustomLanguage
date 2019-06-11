@@ -1,0 +1,7 @@
+{
+    main()
+    {
+        read var3
+        write var3
+    }
+}

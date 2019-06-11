@@ -3,7 +3,9 @@ package com.custom.language.antlr4.generated;
 import com.custom.language.Variable;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -321,7 +323,9 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     @Override
     public Variable visitReadFromStd(CustomParser.ReadFromStdContext ctx) {
         try {
-            currentMethod.localVariables.put(ctx.IDENTIFIER().getText(), new Variable(System.in.read()));
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+            String line = buffer.readLine();
+            currentMethod.localVariables.put(ctx.IDENTIFIER().getText(), new Variable(line));
         } catch (IOException e) {
             e.printStackTrace();
         }
