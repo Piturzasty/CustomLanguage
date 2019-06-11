@@ -122,13 +122,6 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReadFromStd(CustomParser.ReadFromStdContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code comment}
-	 * labeled alternative in {@link CustomParser#statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitComment(CustomParser.CommentContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code methodCall}
 	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree

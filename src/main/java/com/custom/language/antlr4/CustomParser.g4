@@ -41,7 +41,7 @@ localVariableDeclaration
     ;
 
 statement
-    : IF LPAREN parExpression RPAREN statement (ELSE statement)? #ifElseStatement
+    : IF parExpression block (ELSE block)? #ifElseStatement
     | FOREACH LPAREN localVariableDeclaration? COMMA expression COMMA expression RPAREN block #forControl
     | WHILE LPAREN parExpression RPAREN block #whileControl
     | DO block WHILE LPAREN parExpression RPAREN #doWhileControl
@@ -50,7 +50,6 @@ statement
     | WRITE expression #writeToStd
     | WRITELINE expression #writeNewLineToStd
     | READ IDENTIFIER #readFromStd
-    | SINGLE_COMMENT literal #comment
     | IDENTIFIER LPAREN expressionList? RPAREN #methodCall
     ;
 

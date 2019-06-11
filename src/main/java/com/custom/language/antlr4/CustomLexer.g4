@@ -100,7 +100,7 @@ ELLIPSIS:           '...';
 
 WS:                 [ \t\r\n\u000C]+ -> channel(HIDDEN);
 COMMENT:            '/*' .*? '*/'    -> channel(HIDDEN);
-SINGLE_COMMENT:     '//';
+SINGLE_COMMENT:     '//' ~[\r\n]* -> skip;
 
 // Identifiers
 

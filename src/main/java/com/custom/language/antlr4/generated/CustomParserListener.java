@@ -196,18 +196,6 @@ public interface CustomParserListener extends ParseTreeListener {
 	 */
 	void exitReadFromStd(CustomParser.ReadFromStdContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code comment}
-	 * labeled alternative in {@link CustomParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterComment(CustomParser.CommentContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code comment}
-	 * labeled alternative in {@link CustomParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitComment(CustomParser.CommentContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code methodCall}
 	 * labeled alternative in {@link CustomParser#statement}.
 	 * @param ctx the parse tree

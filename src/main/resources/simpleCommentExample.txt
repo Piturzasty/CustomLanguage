@@ -1,0 +1,8 @@
+{
+    main()
+    {
+        writeln "Test"
+
+        // writeln "Not printed"
+    }
+}

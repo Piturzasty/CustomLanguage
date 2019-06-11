@@ -313,11 +313,6 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     }
 
     @Override
-    public Variable visitComment(CustomParser.CommentContext ctx) {
-        return Variable.VOID;
-    }
-
-    @Override
     public Variable visitReturnStatement(CustomParser.ReturnStatementContext ctx) {
         if (ctx.expression() != null) {
             return this.visit(ctx.expression());

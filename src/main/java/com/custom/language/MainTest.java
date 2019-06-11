@@ -234,6 +234,16 @@ public class MainTest {
         }
     }
 
+    @Test
+    public void simpleCommentTest() {
+        try {
+            Main.parseFile("/simpleCommentExample.txt");
+            assertEquals("Test" + System.lineSeparator() + "", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
