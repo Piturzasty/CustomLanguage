@@ -1,4 +1,4 @@
-// Generated from CustomParser.g4 by ANTLR 4.7.1
+// Generated from CustomParser.g4 by ANTLR 4.7.2
 package com.custom.language.antlr4.generated;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -72,14 +72,11 @@ public interface CustomParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void enterBlockStatement(CustomParser.BlockStatementContext ctx);
-
 	/**
 	 * Exit a parse tree produced by {@link CustomParser#blockStatement}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void exitBlockStatement(CustomParser.BlockStatementContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#localVariableDeclaration}.
 	 * @param ctx the parse tree
@@ -210,6 +207,18 @@ public interface CustomParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComment(CustomParser.CommentContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code methodCall}
+	 * labeled alternative in {@link CustomParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodCall(CustomParser.MethodCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code methodCall}
+	 * labeled alternative in {@link CustomParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodCall(CustomParser.MethodCallContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#switchBlockStatementGroup}.
 	 * @param ctx the parse tree
@@ -446,25 +455,21 @@ public interface CustomParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrimary(CustomParser.PrimaryContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
 	void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
-
 	/**
 	 * Exit a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 */
 	void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 */
 	void enterType(CustomParser.TypeContext ctx);
-
 	/**
 	 * Exit a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree

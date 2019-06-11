@@ -384,4 +384,8 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
         return Variable.VOID;
     }
 
+    @Override
+    public Variable visitMethodCall(CustomParser.MethodCallContext ctx) {
+        return this.visit(methods.get(ctx.IDENTIFIER().getText()));
+    }
 }

@@ -1,4 +1,4 @@
-// Generated from CustomParser.g4 by ANTLR 4.7.1
+// Generated from CustomParser.g4 by ANTLR 4.7.2
 package com.custom.language.antlr4.generated;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -88,25 +88,19 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-    @Override
-    public void enterBlockStatement(CustomParser.BlockStatementContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitBlockStatement(CustomParser.BlockStatementContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override public void enterLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx) { }
+	@Override public void enterBlockStatement(CustomParser.BlockStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlockStatement(CustomParser.BlockStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -233,6 +227,18 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitComment(CustomParser.CommentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMethodCall(CustomParser.MethodCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethodCall(CustomParser.MethodCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -489,30 +495,26 @@ public class CustomParserBaseListener implements CustomParserListener {
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx) { }
+	 */
+	@Override public void enterTypeOrVoid(CustomParser.TypeOrVoidContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx) { }
+	 */
+	@Override public void exitTypeOrVoid(CustomParser.TypeOrVoidContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterType(CustomParser.TypeContext ctx) { }
+	 */
+	@Override public void enterType(CustomParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitType(CustomParser.TypeContext ctx) { }
+	 */
+	@Override public void exitType(CustomParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

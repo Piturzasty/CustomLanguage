@@ -1,4 +1,4 @@
-// Generated from CustomParser.g4 by ANTLR 4.7.1
+// Generated from CustomParser.g4 by ANTLR 4.7.2
 package com.custom.language.antlr4.generated;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -59,18 +59,14 @@ public class CustomParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impl
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-    @Override
-    public T visitBlockStatement(CustomParser.BlockStatementContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation returns the result of calling
-     * {@link #visitChildren} on {@code ctx}.</p>
-     */
-    @Override public T visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBlockStatement(CustomParser.BlockStatementContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -141,6 +137,13 @@ public class CustomParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impl
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitComment(CustomParser.CommentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMethodCall(CustomParser.MethodCallContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -293,19 +296,15 @@ public class CustomParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impl
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
-     */
-    @Override
-    public T visitTypeOrVoid(CustomParser.TypeOrVoidContext ctx) {
-        return visitChildren(ctx); }
+	 */
+	@Override public T visitTypeOrVoid(CustomParser.TypeOrVoidContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
-     */
-    @Override
-    public T visitType(CustomParser.TypeContext ctx) {
-        return visitChildren(ctx); }
+	 */
+	@Override public T visitType(CustomParser.TypeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

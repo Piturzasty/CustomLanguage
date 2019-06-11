@@ -51,6 +51,7 @@ statement
     | WRITELINE expression #writeNewLineToStd
     | READ IDENTIFIER #readFromStd
     | SINGLE_COMMENT literal #comment
+    | IDENTIFIER LPAREN expressionList? RPAREN #methodCall
     ;
 
 switchBlockStatementGroup

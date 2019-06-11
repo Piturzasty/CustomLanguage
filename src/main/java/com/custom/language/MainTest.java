@@ -48,7 +48,7 @@ public class MainTest {
     public void printVariablesNewLineTest() {
         try {
             Main.parseFile("/printVariableNewLineExample.txt");
-            assertEquals("Hello my dear\n8\n", outContent.toString());
+            assertEquals("Hello my dear" + System.lineSeparator() + "8" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,7 +58,7 @@ public class MainTest {
     public void simpleArithmeticAddTest() {
         try {
             Main.parseFile("/simpleArithmeticAddExample.txt");
-            assertEquals("13.0\n13.0\n", outContent.toString());
+            assertEquals("13.0" + System.lineSeparator() + "13.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,7 +68,7 @@ public class MainTest {
     public void simpleArithmeticSubTest() {
         try {
             Main.parseFile("/simpleArithmeticSubExample.txt");
-            assertEquals("3.0\n5.0\n", outContent.toString());
+            assertEquals("3.0" + System.lineSeparator() + "5.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,7 +78,7 @@ public class MainTest {
     public void simpleArithmeticDivTest() {
         try {
             Main.parseFile("/simpleArithmeticDivExample.txt");
-            assertEquals("2.0\n2.0\n2.6666666666666665\n", outContent.toString());
+            assertEquals("2.0" + System.lineSeparator() + "2.0" + System.lineSeparator() + "2.6666666666666665" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,7 +88,7 @@ public class MainTest {
     public void simpleArithmeticMulTest() {
         try {
             Main.parseFile("/simpleArithmeticMulExample.txt");
-            assertEquals("40.0\n40.0\n24.0\n", outContent.toString());
+            assertEquals("40.0" + System.lineSeparator() + "40.0" + System.lineSeparator() + "24.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,7 +98,7 @@ public class MainTest {
     public void simpleArithmeticModTest() {
         try {
             Main.parseFile("/simpleArithmeticModExample.txt");
-            assertEquals("3.0\n3.0\n2.0\n", outContent.toString());
+            assertEquals("3.0" + System.lineSeparator() + "3.0" + System.lineSeparator() + "2.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -108,7 +108,7 @@ public class MainTest {
     public void simpleBooleanNotTest() {
         try {
             Main.parseFile("/simpleBooleanNotExample.txt");
-            assertEquals("true\nfalse\n", outContent.toString());
+            assertEquals("true" + System.lineSeparator() + "false" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -118,7 +118,7 @@ public class MainTest {
     public void simpleBooleanAndTest() {
         try {
             Main.parseFile("/simpleBooleanAndExample.txt");
-            assertEquals("true\nfalse\nfalse\nfalse\n", outContent.toString());
+            assertEquals("true" + System.lineSeparator() + "false" + System.lineSeparator() + "false" + System.lineSeparator() + "false" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -128,7 +128,7 @@ public class MainTest {
     public void simpleBooleanOrTest() {
         try {
             Main.parseFile("/simpleBooleanOrExample.txt");
-            assertEquals("true\nfalse\ntrue\ntrue\n", outContent.toString());
+            assertEquals("true" + System.lineSeparator() + "false" + System.lineSeparator() + "true" + System.lineSeparator() + "true" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -138,7 +138,7 @@ public class MainTest {
     public void simpleLessThanComparatorTest() {
         try {
             Main.parseFile("/simpleLessThanExample.txt");
-            assertEquals("true\nfalse\nfalse\n", outContent.toString());
+            assertEquals("true" + System.lineSeparator() + "false" + System.lineSeparator() + "false" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,7 +148,7 @@ public class MainTest {
     public void simpleLessEqualsComparatorTest() {
         try {
             Main.parseFile("/simpleLessEqualsExample.txt");
-            assertEquals("true\ntrue\nfalse\n", outContent.toString());
+            assertEquals("true" + System.lineSeparator() + "true" + System.lineSeparator() + "false" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,7 +158,7 @@ public class MainTest {
     public void simpleGreaterThanComparatorTest() {
         try {
             Main.parseFile("/simpleGreaterThanExample.txt");
-            assertEquals("false\nfalse\ntrue\n", outContent.toString());
+            assertEquals("false" + System.lineSeparator() + "false" + System.lineSeparator() + "true" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -168,7 +168,7 @@ public class MainTest {
     public void simpleGreaterEqualsComparatorTest() {
         try {
             Main.parseFile("/simpleGreaterEqualsExample.txt");
-            assertEquals("false\ntrue\ntrue\n", outContent.toString());
+            assertEquals("false" + System.lineSeparator() + "true" + System.lineSeparator() + "true" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,7 +178,7 @@ public class MainTest {
     public void simpleForLoopTest() {
         try {
             Main.parseFile("/simpleForLoopExample.txt");
-            assertEquals("0\n1.0\n2.0\n3.0\n4.0\n", outContent.toString());
+            assertEquals("0" + System.lineSeparator() + "1.0" + System.lineSeparator() + "2.0" + System.lineSeparator() + "3.0" + System.lineSeparator() + "4.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -188,7 +188,7 @@ public class MainTest {
     public void simpleIncrementTest() {
         try {
             Main.parseFile("/simpleIncrementExample.txt");
-            assertEquals("6.0\n3.0\n", outContent.toString());
+            assertEquals("6.0" + System.lineSeparator() + "3.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -198,7 +198,7 @@ public class MainTest {
     public void simpleDecrementTest() {
         try {
             Main.parseFile("/simpleDecrementExample.txt");
-            assertEquals("4.0\n1.0\n", outContent.toString());
+            assertEquals("4.0" + System.lineSeparator() + "1.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -208,7 +208,7 @@ public class MainTest {
     public void simpleDoWhileLoopTest() {
         try {
             Main.parseFile("/simpleDoWhileExample.txt");
-            assertEquals("1.0\n2.0\n3.0\n4.0\n5.0\n6.0\n7.0\n8.0\n9.0\n10.0\n", outContent.toString());
+            assertEquals("1.0" + System.lineSeparator() + "2.0" + System.lineSeparator() + "3.0" + System.lineSeparator() + "4.0" + System.lineSeparator() + "5.0" + System.lineSeparator() + "6.0" + System.lineSeparator() + "7.0" + System.lineSeparator() + "8.0" + System.lineSeparator() + "9.0" + System.lineSeparator() + "10.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -218,7 +218,7 @@ public class MainTest {
     public void simpleWhileLoopTest() {
         try {
             Main.parseFile("/simpleWhileExample.txt");
-            assertEquals("1.0\n2.0\n3.0\n4.0\n5.0\n6.0\n7.0\n8.0\n9.0\n10.0\n", outContent.toString());
+            assertEquals("1.0" + System.lineSeparator() + "2.0" + System.lineSeparator() + "3.0" + System.lineSeparator() + "4.0" + System.lineSeparator() + "5.0" + System.lineSeparator() + "6.0" + System.lineSeparator() + "7.0" + System.lineSeparator() + "8.0" + System.lineSeparator() + "9.0" + System.lineSeparator() + "10.0" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -228,7 +228,7 @@ public class MainTest {
     public void simpleMethodCallTest() {
         try {
             Main.parseFile("/simpleMethodCallExample.txt");
-            assertEquals("Hello my dear\nbar\n", outContent.toString());
+            assertEquals("Hello my dear" + System.lineSeparator() + "bar" + System.lineSeparator() + "", outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-// Generated from CustomParser.g4 by ANTLR 4.7.1
+// Generated from CustomParser.g4 by ANTLR 4.7.2
 package com.custom.language.antlr4.generated;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -47,18 +47,17 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlock(CustomParser.BlockContext ctx);
 	/**
-     * Visit a parse tree produced by {@link CustomParser#blockStatement}.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitBlockStatement(CustomParser.BlockStatementContext ctx);
-
-    /**
-     * Visit a parse tree produced by {@link CustomParser#localVariableDeclaration}.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx);
+	 * Visit a parse tree produced by {@link CustomParser#blockStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlockStatement(CustomParser.BlockStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CustomParser#localVariableDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLocalVariableDeclaration(CustomParser.LocalVariableDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ifElseStatement}
 	 * labeled alternative in {@link CustomParser#statement}.
@@ -129,6 +128,13 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitComment(CustomParser.CommentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code methodCall}
+	 * labeled alternative in {@link CustomParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodCall(CustomParser.MethodCallContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CustomParser#switchBlockStatementGroup}.
 	 * @param ctx the parse tree
@@ -269,17 +275,17 @@ public interface CustomParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrimary(CustomParser.PrimaryContext ctx);
 	/**
-     * Visit a parse tree produced by {@link CustomParser#typeOrVoid}.
+	 * Visit a parse tree produced by {@link CustomParser#typeOrVoid}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-    T visitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
+	T visitTypeOrVoid(CustomParser.TypeOrVoidContext ctx);
 	/**
-     * Visit a parse tree produced by {@link CustomParser#type}.
+	 * Visit a parse tree produced by {@link CustomParser#type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-    T visitType(CustomParser.TypeContext ctx);
+	T visitType(CustomParser.TypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CustomParser#formalParameters}.
 	 * @param ctx the parse tree

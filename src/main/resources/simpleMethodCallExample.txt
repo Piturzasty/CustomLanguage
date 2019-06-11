@@ -1,11 +1,12 @@
 {
-    int func() {
-        writeln bar
-    }
+     void func() {
+         bar <- "bar"
+         writeln bar
+     }
 
-    main()
-    {
-        writeln "Hello my dear"
-        func()
-    }
-}
+     main()
+     {
+         writeln "Hello my dear"
+         func()
+     }
+ }
