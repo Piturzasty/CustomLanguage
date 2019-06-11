@@ -8,10 +8,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variable> {
+    class Method {
+        CustomParser.MethodBodyContext methodContext;
+        Variable returnValue = null;
+        boolean isDone = false;
+
+        Method(CustomParser.MethodBodyContext methodContext) {
+            this.methodContext = methodContext;
+        }
+    }
+
     private static final double SMALL_VALUE = 0.00000000001;
     private Map<String, Variable> variables = new HashMap<>();
     private Map<String, Variable> localVariables = new HashMap<>();
-    private Map<String, CustomParser.MethodBodyContext> methods = new HashMap<String, CustomParser.MethodBodyContext>();
+
+    private Map<String, Method> methods = new HashMap<>();
+    private Method currentMethod = null;
 
     @Override
     public Variable visitDecimalLiteral(CustomParser.DecimalLiteralContext ctx) {
@@ -221,7 +233,15 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitExpressionMethodCall(CustomParser.ExpressionMethodCallContext ctx) {
-        return this.visit(methods.get(ctx.IDENTIFIER().getText()));
+        Method oldMethod = currentMethod;
+        currentMethod = methods.get(ctx.IDENTIFIER().getText());
+        Variable variable = this.visit(currentMethod.methodContext);
+        if (oldMethod != null) currentMethod = oldMethod;
+
+        Method retMethod = methods.get(ctx.IDENTIFIER().getText());
+        Variable retVariable = retMethod.isDone && retMethod.returnValue != null ? retMethod.returnValue : variable;
+        retMethod.isDone = false;
+        return retVariable;
     }
 
     @Override
@@ -320,7 +340,10 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
     @Override
     public Variable visitReturnStatement(CustomParser.ReturnStatementContext ctx) {
         if (ctx.expression() != null) {
-            return this.visit(ctx.expression());
+            Variable var = this.visit(ctx.expression());
+            currentMethod.returnValue = var;
+            currentMethod.isDone = true;
+            return var;
         } else {
             return Variable.VOID;
         }
@@ -380,12 +403,31 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitMethodDeclaration(CustomParser.MethodDeclarationContext ctx) {
-        methods.put(ctx.IDENTIFIER().getText(), ctx.methodBody());
+        methods.put(ctx.IDENTIFIER().getText(), new Method(ctx.methodBody()));
         return Variable.VOID;
     }
 
     @Override
     public Variable visitMethodCall(CustomParser.MethodCallContext ctx) {
-        return this.visit(methods.get(ctx.IDENTIFIER().getText()));
+        Method oldMethod = currentMethod;
+        currentMethod = methods.get(ctx.IDENTIFIER().getText());
+        Variable variable = this.visit(currentMethod.methodContext);
+        if (oldMethod != null) currentMethod = oldMethod;
+
+        Method retMethod = methods.get(ctx.IDENTIFIER().getText());
+        Variable retVariable = retMethod.isDone && retMethod.returnValue != null ? retMethod.returnValue : variable;
+        retMethod.isDone = false;
+        return retVariable;
+    }
+
+    @Override
+    public Variable visitMethodBody(CustomParser.MethodBodyContext ctx) {
+        // main()
+        if (currentMethod == null) {
+            methods.put("main", new Method(ctx));
+            currentMethod = methods.get("main");
+        }
+
+        return this.visit(ctx.block());
     }
 }

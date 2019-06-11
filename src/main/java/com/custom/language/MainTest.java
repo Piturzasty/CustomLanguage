@@ -8,6 +8,8 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Optional;
+import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
 
@@ -248,7 +250,31 @@ public class MainTest {
     public void simpleIfTest() {
         try {
             Main.parseFile("/simpleIfExample.txt");
-            assertEquals("Passed 1" + System.lineSeparator() + "Passed 2" + System.lineSeparator() + "Passed 3" + System.lineSeparator() + "Passed 4" + System.lineSeparator() + "", outContent.toString());
+            assertEquals(buildExpectedResult(i -> "Passed " + i.toString() + System.lineSeparator(), 4), outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void difficultTest() {
+        try {
+            Main.parseFile("/difficultTest.txt");
+
+            String expectedResult = "";
+
+            Function<Integer, String> forFunction = integer -> "FOR" + System.lineSeparator();
+
+            expectedResult += "Main" + System.lineSeparator();
+            expectedResult += "Ok" + System.lineSeparator();
+            expectedResult += buildExpectedResult(forFunction, 5);
+            expectedResult += "Main 2" + System.lineSeparator();
+            expectedResult += "Ok" + System.lineSeparator();
+            expectedResult += buildExpectedResult(forFunction, 5);
+            expectedResult += "0" + System.lineSeparator();
+            expectedResult += "Main 3" + System.lineSeparator();
+
+            assertEquals(expectedResult, outContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -258,5 +284,13 @@ public class MainTest {
     public void restoreStreams() {
         System.setOut(originalOut);
         System.setErr(originalErr);
+    }
+
+    private String buildExpectedResult(Function<Integer, String> function, int count) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= count; ++i) {
+            sb.append(function.apply(i));
+        }
+        return sb.toString();
     }
 }

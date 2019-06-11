@@ -1,0 +1,47 @@
+{
+    void bar()
+    {
+        foreach ( i <- 0 , i < 5 , i ++ ){
+        {
+            writeln "FOR"
+        }
+    }
+
+    int foo()
+    {
+        test <- false
+
+        if (test)
+        {
+            writeln "Bad 1"
+        }
+        else
+        {
+            writeln "Ok"
+        }
+
+        bar()
+
+
+        if (test)
+        {
+            return 7
+        }
+
+        return 0
+    }
+
+    main()
+    {
+        a <- 1
+        writeln "Main"
+
+        foo()
+
+        writeln "Main 2"
+
+        writeln foo()
+
+        writeln "Main 3"
+    }
+}
