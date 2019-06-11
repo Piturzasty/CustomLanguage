@@ -1,0 +1,22 @@
+{
+    main()
+    {
+        a <- 7
+
+        if ( a == 7 ) { writeln "Passed 1" }
+
+        if ( true ) { writeln "Passed 2" }
+
+        if ( false ) { writeln "Bad 1" }
+
+        if ( a > 7 ) { writeln "Bad 2" }
+
+        if ( a < 7 ) { writeln "Bad 3" }
+
+        if ( a == 7 and a == 7 and true ) { writeln "Passed 3" }
+
+        if ( a == 7 and false ) { writeln "Bad 4" }
+
+        if ( a == 7 or a == 6 ) { writeln "Passed 4" }
+    }
+}

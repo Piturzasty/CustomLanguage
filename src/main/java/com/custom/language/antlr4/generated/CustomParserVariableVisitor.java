@@ -156,6 +156,11 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitExpressionPrimary(CustomParser.ExpressionPrimaryContext ctx) {
+
+        if (ctx.primary().literal() != null) {
+            return new Variable(this.visit(ctx.primary()), true);
+        }
+
         return new Variable(this.visit(ctx.primary()));
     }
 
@@ -335,10 +340,10 @@ public class CustomParserVariableVisitor extends CustomParserBaseVisitor<Variabl
 
     @Override
     public Variable visitIfElseStatement(CustomParser.IfElseStatementContext ctx) {
-        if (new Variable(ctx.parExpression()).asBoolean()) {
-            this.visit(ctx.statement(0));
-        } else {
-            this.visit(ctx.statement(1));
+        if (new Variable(this.visit(ctx.parExpression())).asBoolean()) {
+            this.visit(ctx.block(0));
+        } else if (ctx.block().size() > 1) {
+            this.visit(ctx.block(1));
         }
         return Variable.VOID;
     }

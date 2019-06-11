@@ -4,9 +4,16 @@ public class Variable {
     public static Variable VOID = new Variable(new Object());
 
     final Object value;
+    final boolean softEquals;
 
     public Variable(Object value) {
         this.value = value;
+        this.softEquals = false;
+    }
+
+    public Variable(Object value, boolean softEquals) {
+        this.value = value;
+        this.softEquals = softEquals;
     }
 
     public Boolean asBoolean() {
@@ -51,6 +58,10 @@ public class Variable {
         }
 
         Variable that = (Variable) o;
+
+        if (softEquals && that.softEquals) {
+            return String.valueOf(value).equals(String.valueOf(that.value));
+        }
 
         return this.value.equals(that.value);
     }

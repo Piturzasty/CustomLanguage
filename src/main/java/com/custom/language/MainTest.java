@@ -244,6 +244,16 @@ public class MainTest {
         }
     }
 
+    @Test
+    public void simpleIfTest() {
+        try {
+            Main.parseFile("/simpleIfExample.txt");
+            assertEquals("Passed 1" + System.lineSeparator() + "Passed 2" + System.lineSeparator() + "Passed 3" + System.lineSeparator() + "Passed 4" + System.lineSeparator() + "", outContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
